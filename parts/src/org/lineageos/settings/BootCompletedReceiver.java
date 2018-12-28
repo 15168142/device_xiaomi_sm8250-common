@@ -31,6 +31,7 @@ import android.view.Display;
 import android.view.Display.HdrCapabilities;
 import androidx.preference.PreferenceManager;
 
+import org.lineageos.settings.dirac.DiracUtils;
 import org.lineageos.settings.doze.PocketService;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
@@ -47,6 +48,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         if (DEBUG) Log.d(TAG, "Received boot completed intent");
+        DiracUtils.initialize(context);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         ThermalUtils.startService(context);
         RefreshUtils.startService(context);
