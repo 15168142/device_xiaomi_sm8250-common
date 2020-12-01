@@ -99,6 +99,8 @@ on post-fs
     # set RLIMIT_MEMLOCK to 64KB
     setrlimit 8 65536 65536
     write /dev/ipa 1
+    # Disable WiFi Aware feature.
+    mount none /dev/null /vendor/etc/permissions/android.hardware.wifi.aware.xml bind
 
 on late-fs
     mount_all /vendor/etc/fstab.qcom --late
