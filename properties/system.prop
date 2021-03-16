@@ -46,9 +46,6 @@ persist.vendor.color.matrix=2
 # Display (Surface Flinger)
 ro.surface_flinger.enable_layer_caching=false
 
-# DPM
-persist.vendor.dpm.feature=1
-
 # Fake encryption
 ro.crypto.state=encrypted
 
