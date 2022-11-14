@@ -129,6 +129,10 @@ on property:ro.boot.dp=0x0
 on boot
     chown system system /sys/class/touch/touch_dev/palm_sensor
     chown system system /sys/class/touch/touch_dev/partial_diff_data
+
+    #palm_sensor
+    chown system system /sys/class/touch/touch_dev/palm_sensor
+
     write /dev/cpuset/audio-app/cpus 1-2
     #USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
