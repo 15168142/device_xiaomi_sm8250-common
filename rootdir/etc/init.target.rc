@@ -435,3 +435,8 @@ on property:sys.boot_completed=1
 on property:sys.boot_completed=1
     # Only owner can acces this node
     chmod 440 /proc/net/unix
+
+on post-fs-data
+    # Media XML codecs
+    setprop ro.media.xml_variant.codecs _kona
+    setprop ro.media.xml_variant.codecs_performance _kona
