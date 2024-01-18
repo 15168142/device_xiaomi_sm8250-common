@@ -332,4 +332,6 @@
     <!-- Whether to show double tap ambient settings -->
     <bool name="config_supports_double_tap_ambient" translatable="false">true</bool>
 
+    <!-- Whether the device supports Smart Pixels -->
+    <bool name="config_supportSmartPixels">true</bool>
 </resources>
