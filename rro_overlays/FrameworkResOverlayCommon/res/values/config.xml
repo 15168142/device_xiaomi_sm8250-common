@@ -458,4 +458,7 @@
         <item>255</item>   <!-- at 5000 lux = 100% -->
     </integer-array>
 
+    <!-- Pocket Lock -->
+    <bool name="config_pocketModeSupported">false</bool>
+
 </resources>
