@@ -147,6 +147,9 @@ ro.soc.model=SM8250
 ro.crypto.allow_encrypt_override=true
 ro.crypto.volume.filenames_mode=aes-256-cts
 
+# Disable Layer caching
+ro.surface_flinger.enable_layer_caching=false
+
 # Display
 debug.sf.treat_170m_as_sRGB=1
 persist.sys.sf.color_mode=9
