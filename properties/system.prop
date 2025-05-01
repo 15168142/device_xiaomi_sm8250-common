@@ -77,3 +77,7 @@ vidc.enc.disable.pq=1
 
 # Zygote
 persist.device_config.runtime_native.usap_pool_enabled=true
+
+
+# Increase max cached processes
+activity_manager.max_cached_processes=64
