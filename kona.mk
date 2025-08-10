@@ -195,7 +195,9 @@ $(call inherit-product, hardware/dolby/dolby.mk)
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm-service.clearkey
+    android.hardware.drm@1.4.vendor \
+    android.hardware.drm-service.clearkey \
+    libcrypto_shim.vendor
 
 # fastbootd
 PRODUCT_PACKAGES += \
