@@ -337,4 +337,11 @@
 
     <!-- Bytes that the PinnerService will pin for WebView -->
     <integer name="config_pinnerWebviewPinBytes">20971520</integer>
+
+    <!-- Whether device has turbo power charging support -->
+    <bool name="config_hasTurboPowerCharger">true</bool>
+
+    <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
+    <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/power_supply/bms/fastcharge_mode</string>
+
 </resources>
