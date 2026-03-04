@@ -94,6 +94,12 @@ PRODUCT_PACKAGES += \
     otapreopt_script
 endif
 
+# ADB user build support
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.usb.config=mtp,adb
+endif
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl \
