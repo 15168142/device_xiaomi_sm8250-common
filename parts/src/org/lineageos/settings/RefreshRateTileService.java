@@ -46,6 +46,7 @@ public class RefreshRateTileService extends TileService {
         Display.Mode[] modes = context.getDisplay().getSupportedModes();
         for (Display.Mode m : modes) {
             float rate = Float.valueOf(String.format(Locale.US, "%.02f", m.getRefreshRate()));
+            if (rate < 59f) continue;
             if (m.getPhysicalWidth() == mode.getPhysicalWidth() &&
                 m.getPhysicalHeight() == mode.getPhysicalHeight()) {
                 availableRates.add(rate);
