@@ -57,8 +57,9 @@ public class RefreshRateTileService extends TileService {
 
     private int getSettingOf(String key) {
         float rate = Settings.System.getFloat(context.getContentResolver(), key, 60);
-        return availableRates.indexOf(
+        int index = availableRates.indexOf(
                 Float.valueOf(String.format(Locale.US, "%.02f", rate)));
+        return index > -1 ? index : 0;
     }
 
     private void syncFromSettings() {
