@@ -66,7 +66,6 @@ PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 # Inherit virtual_ab_ota product
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
 
-
 PRODUCT_PACKAGES += \
     android.hardware.boot-service.qti \
     android.hardware.boot-service.qti.recovery
@@ -221,6 +220,9 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/xiaomi:libudfps_extension.xiaomi)
 endif
 endif
+
+# GameBar Performance Overlay
+$(call inherit-product, packages/apps/GameBar/gamebar.mk)
 
 # Health
 PRODUCT_PACKAGES += \
