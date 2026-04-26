@@ -1,6 +1,3 @@
-# BPF
-ro.bpf.kver_override=5.10.239
-
 # MTE
 persist.arm64.memtag.app.com.android.se=off 
 persist.arm64.memtag.app.com.google.android.bluetooth=off 
