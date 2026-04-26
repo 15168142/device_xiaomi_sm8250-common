@@ -60,6 +60,8 @@
                        android:value="com.android.settings.category.ia.sound" />
             <meta-data android:name="com.android.settings.summary"
                        android:resource="@string/dirac_summary" />
+            <meta-data android:name="com.android.settings.group_key"
+                       android:value="category_xiaomiparts" />
         </activity>
 
         <service
@@ -149,6 +151,9 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/refresh_summary" />
+            <meta-data
+                android:name="com.android.settings.group_key"
+                android:value="category_xiaomiparts" />
         </activity>
 
         <service
@@ -176,6 +181,9 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/htsr_enable_summary" />
+            <meta-data
+                android:name="com.android.settings.group_key"
+                android:value="category_xiaomiparts" />
         </activity>
 
         <activity
@@ -193,6 +201,9 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/dc_dimming_enable_summary" />
+            <meta-data
+                android:name="com.android.settings.group_key"
+                android:value="category_xiaomiparts" />
         </activity>
 
 
@@ -210,6 +221,9 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/hbm_fragment_summary" />
+            <meta-data
+                android:name="com.android.settings.group_key"
+                android:value="category_xiaomiparts" />
         </activity>
 
         <activity 
@@ -279,6 +293,9 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/saturation_summary" />
+            <meta-data
+                android:name="com.android.settings.group_key"
+                android:value="category_xiaomiparts" />
         </activity>
 
         <!-- Display Saturation tile service -->
@@ -306,6 +323,9 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/clear_speaker_summary" />
+            <meta-data
+                android:name="com.android.settings.group_key"
+                android:value="category_xiaomiparts" />
         </activity>
 
         <!-- Pocketservice service -->
