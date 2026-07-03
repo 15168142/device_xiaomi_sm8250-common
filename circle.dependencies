@@ -1,0 +1,22 @@
+[
+  {
+    "remote": "circle",
+    "repository": "hardware_xiaomi",
+    "target_path": "hardware/xiaomi"
+  },
+  {
+    "repository": "LineageOS/android_kernel_xiaomi_sm8250",
+    "target_path": "kernel/xiaomi/sm8250",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "vendor_xiaomi_sm8250-common",
+    "target_path": "vendor/xiaomi/sm8250-common"
+  },
+  {
+    "remote": "circle",
+    "repository": "hardware_dolby",
+    "target_path": "hardware/dolby",
+    "branch": "16.2-alioth"
+  }
+]
