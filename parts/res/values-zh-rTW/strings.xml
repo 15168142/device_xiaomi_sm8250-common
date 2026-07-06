@@ -15,10 +15,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="htsr_title">觸控反應速度</string>
-    <string name="htsr_enable_title">提高觸控反應速度</string>
-    <string name="htsr_enable_summary">提高觸控輪詢率以降低延遲</string>
-    <string name="htsr_enable_summary_not_supported">目前的核心不支援提高觸控反應速度</string>
     <string name="display_title">顯示</string>
     <string name="dc_dimming_enable_title">防閃爍</string>
     <string name="dc_dimming_enable_summary">防閃爍模式可透過「DC 調光」功能，減少低光源環境下的眼睛疲勞。此模式可能會降低色彩準確度，並影響部分內容的顯示效果。</string>

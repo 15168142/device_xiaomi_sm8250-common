@@ -142,12 +142,6 @@
     <string name="music_headset_scenario_video">Video</string>
     <string name="music_headset_scenario_vocal">Giọng nói</string>
 
-    <!-- High Touch Polling -->
-    <string name="htsr_title">Độ nhạy cảm ứng</string>
-    <string name="htsr_enable_title">Tăng độ nhạy cảm ứng</string>
-    <string name="htsr_enable_summary">Tăng tần suất quét cảm ứng để giảm độ trễ</string>
-    <string name="htsr_enable_summary_not_supported">Kernel hiện không hỗ trợ tính năng tăng độ nhạy</string>
-
     <!-- Saturation -->
     <string name="saturation_title">Độ bão hoà</string>
     <string name="saturation_summary">Điều chỉnh mức độ bão hoà của màn hình</string>

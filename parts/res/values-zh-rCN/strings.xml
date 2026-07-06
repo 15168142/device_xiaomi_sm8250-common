@@ -17,10 +17,6 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="htsr_title">触控响应速度</string>
-    <string name="htsr_enable_title">提高触控响应速度</string>
-    <string name="htsr_enable_summary">提高触控轮询率以降低延迟</string>
-    <string name="htsr_enable_summary_not_supported">当前内核不支持提高触控响应速度</string>
     <string name="display_title">显示</string>
     <string name="dc_dimming_enable_title">防闪烁</string>
     <string name="dc_dimming_enable_summary">防闪烁模式可以通过“DC 调光”功能，减少暗光条件下的眼部疲劳。此模式可能降低色彩精度，并影响部分内容的显示效果。</string>
