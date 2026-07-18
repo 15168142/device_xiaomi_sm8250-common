@@ -5,9 +5,8 @@
     "target_path": "hardware/xiaomi"
   },
   {
-    "repository": "LineageOS/android_kernel_xiaomi_sm8250",
-    "target_path": "kernel/xiaomi/sm8250",
-    "branch": "lineage-23.2"
+    "repository": "kernel_xiaomi_sm8250",
+    "target_path": "kernel/xiaomi/sm8250"
   },
   {
     "repository": "vendor_xiaomi_sm8250-common",
