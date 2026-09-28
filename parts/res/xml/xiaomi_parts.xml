@@ -65,6 +65,11 @@
             android:title="@string/refresh_title"
             android:summary="@string/refresh_summary" />
 
+        <Preference
+            android:key="xiaomi_vpp"
+            android:icon="@drawable/ic_video_settings"
+            android:title="@string/screen_enhance_engine_title"
+            android:summary="@string/screen_enhance_engine_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory

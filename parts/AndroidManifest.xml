@@ -220,7 +220,18 @@
             android:label="@string/saturation_title"
             android:exported="true"
             android:theme="@style/Theme.SubSettingsBase.Expressive" />
-    
+
+        <!-- AI Master Picture Engine (VPP) activity -->
+        <activity
+            android:name=".vpp.VppSettingsActivity"
+            android:label="@string/screen_enhance_engine_title"
+            android:exported="false"
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
+
+        <service
+            android:name=".vpp.VppService"
+            android:exported="false" />
+
         <activity
             android:name=".speaker.ClearSpeakerActivity"
             android:exported="false"

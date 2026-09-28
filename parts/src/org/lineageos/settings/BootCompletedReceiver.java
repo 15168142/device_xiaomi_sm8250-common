@@ -31,6 +31,7 @@ import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
 import org.lineageos.settings.touchsampling.TouchSamplingUtils;
 import org.lineageos.settings.utils.FileUtils;
+import org.lineageos.settings.vpp.VppUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
@@ -49,6 +50,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         if (ThermalUtils.isServiceEnabled(context)) {
             ThermalUtils.startService(context);
         }
+        VppUtils.startService(context);
         RefreshUtils.startService(context);
         TouchSamplingUtils.restoreSamplingValue(context);
         FileUtils.enableService(context);

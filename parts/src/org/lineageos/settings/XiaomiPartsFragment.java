@@ -36,6 +36,7 @@ import org.lineageos.settings.saturation.SaturationActivity;
 import org.lineageos.settings.speaker.ClearSpeakerActivity;
 import org.lineageos.settings.thermal.ThermalActivity;
 import org.lineageos.settings.touchsampling.TouchSamplingUtils;
+import org.lineageos.settings.vpp.VppSettingsActivity;
 
 /**
  * Single entry point for the device specific settings, injected once into the Settings' System
@@ -67,6 +68,7 @@ public class XiaomiPartsFragment extends SettingsBasePreferenceFragment {
         link("xiaomi_hbm", HBMActivity.class);
         link("xiaomi_saturation", SaturationActivity.class);
         link("xiaomi_refresh", RefreshActivity.class);
+        link("xiaomi_vpp", VppSettingsActivity.class);
         link("xiaomi_dirac", DiracActivity.class);
         link("xiaomi_clear_speaker", ClearSpeakerActivity.class);
         link("xiaomi_charge", ChargeActivity.class);
