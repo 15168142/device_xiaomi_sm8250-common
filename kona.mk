@@ -173,6 +173,8 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,qtidisplay,gralloc_handle_has_reserved_size,true)
 
 # Dolby
+TARGET_INCLUDES_DolbyVision := true
+PRODUCT_PACKAGES += DolbyAtmos
 $(call inherit-product, hardware/dolby/dolby.mk)
 
 # DRM
