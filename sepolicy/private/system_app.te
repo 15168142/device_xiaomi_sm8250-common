@@ -1,2 +1,7 @@
 # Allow IFAAService access to Mlipay HAL
 hal_client_domain(system_app, hal_mlipay)
+
+allow system_app sysfs_thermal:file rw_file_perms;
+allow system_app zygote:unix_stream_socket getopt;
+allow system_app user_profile_data_file:dir read;
+allow system_app sysfs_zram:file { getattr open read };
