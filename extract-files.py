@@ -51,6 +51,8 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('writepid /dev/cpuset/foreground/tasks', 'task_profiles ProcessCapacityHigh'),
     'vendor/etc/init/android.hardware.neuralnetworks@1.3-service-qti.rc': blob_fixup()
         .regex_replace('writepid /dev/stune/nnapi-hal/tasks', 'task_profiles NNApiHALPerformance'),
+    'vendor/etc/configstore/vpp.configstore.xml': blob_fixup()
+        .regex_replace(r'(<capability key="enable" value=)"false"/>', r'\g<1>"true"/>'),
 }  # fmt: skip
 
 
