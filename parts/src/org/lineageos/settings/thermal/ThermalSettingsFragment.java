@@ -31,7 +31,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SectionIndexer;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.settingslib.applications.ApplicationsState;
 import com.android.settingslib.widget.SettingsBasePreferenceFragment;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import org.lineageos.settings.R;
 
@@ -69,7 +69,7 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
     private RecyclerView mAppsRecyclerView;
     private EditText mSearchView;
     private ImageButton mClearSearch;
-    private Switch mEnabledSwitch;
+    private MaterialSwitch mEnabledSwitch;
     private boolean mProfilesEnabled;
 
     @Override

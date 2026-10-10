@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="20dp"
         android:paddingTop="24dp"
         android:paddingBottom="32dp">
 
@@ -29,11 +28,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/parts_card_background"
+            android:background="@drawable/settingslib_round_background"
             android:gravity="center_vertical"
             android:minHeight="104dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="24dp"
+            android:paddingHorizontal="32dp"
             android:paddingVertical="20dp">
 
             <LinearLayout
@@ -59,11 +58,15 @@
                     android:textColor="@color/settingslib_materialColorOnSurfaceVariant" />
             </LinearLayout>
 
-            <Switch
+            <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/charge_bypass_switch"
+                style="?expressiveSwitchStyle"
+                android:theme="@style/Theme.Material3.DynamicColors.DayNight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:contentDescription="@string/charge_bypass_title" />
         </LinearLayout>
 
@@ -71,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:paddingHorizontal="8dp"
+            android:paddingHorizontal="28dp"
             android:text="@string/charge_bypass_warning"
             android:textAppearance="@style/TextAppearance.SettingsLib.BodyMedium"
             android:textColor="@color/settingslib_materialColorPrimary" />

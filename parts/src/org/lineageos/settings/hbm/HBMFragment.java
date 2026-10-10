@@ -28,6 +28,7 @@ import androidx.preference.TwoStatePreference;
 
 import com.android.settingslib.widget.SettingsBasePreferenceFragment;
 
+import org.lineageos.settings.CustomSeekBarPreference;
 import org.lineageos.settings.utils.FileUtils;
 import org.lineageos.settings.R;
 
@@ -40,21 +41,51 @@ public class HBMFragment extends SettingsBasePreferenceFragment
     public static final String KEY_AUTO_HBM_THRESHOLD = "auto_hbm_threshold";
     public static final String KEY_HBM_DISABLE_TIME = "hbm_disable_time";
 
+    private static final int THRESHOLD_MIN = 0;
+    private static final int THRESHOLD_MAX = 60000;
+    private static final int THRESHOLD_DEFAULT = 7000;
+    private static final int THRESHOLD_STEP = 1000;
+    private static final int DISABLE_TIME_MIN = 1;
+    private static final int DISABLE_TIME_MAX = 10;
+    private static final int DISABLE_TIME_DEFAULT = 1;
+
     private TwoStatePreference mHBMModeSwitch;
     private TwoStatePreference mAutoHBMSwitch;
+    private CustomSeekBarPreference mThresholdPreference;
+    private CustomSeekBarPreference mTimePreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.hbm_settings, rootKey);
 
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         // HBM
         mHBMModeSwitch = (TwoStatePreference) findPreference(KEY_HBM_SWITCH);
-	mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch(getContext()));
+        mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch(getContext()));
 
         // AutoHBM
         mAutoHBMSwitch = (TwoStatePreference) findPreference(KEY_AUTO_HBM_SWITCH);
         mAutoHBMSwitch.setOnPreferenceChangeListener(this);
-        mAutoHBMSwitch.setChecked(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(HBMFragment.KEY_AUTO_HBM_SWITCH, false));
+        mAutoHBMSwitch.setChecked(prefs.getBoolean(KEY_AUTO_HBM_SWITCH, false));
+
+        // AutoHBM threshold
+        mThresholdPreference = findPreference(KEY_AUTO_HBM_THRESHOLD);
+        mThresholdPreference.setMin(THRESHOLD_MIN);
+        mThresholdPreference.setMax(THRESHOLD_MAX);
+        mThresholdPreference.setSliderIncrement(THRESHOLD_STEP);
+        mThresholdPreference.setOnPreferenceChangeListener(this);
+        mThresholdPreference.setValue(
+                readIntPreference(prefs, KEY_AUTO_HBM_THRESHOLD, THRESHOLD_DEFAULT));
+
+        // AutoHBM disable delay
+        mTimePreference = findPreference(KEY_HBM_DISABLE_TIME);
+        mTimePreference.setMin(DISABLE_TIME_MIN);
+        mTimePreference.setMax(DISABLE_TIME_MAX);
+        mTimePreference.setSliderIncrement(1);
+        mTimePreference.setOnPreferenceChangeListener(this);
+        mTimePreference.setValue(
+                readIntPreference(prefs, KEY_HBM_DISABLE_TIME, DISABLE_TIME_DEFAULT));
     }
 
     public static boolean isAUTOHBMEnabled(Context context) {
@@ -69,8 +100,34 @@ public class HBMFragment extends SettingsBasePreferenceFragment
             prefChange.putBoolean(KEY_AUTO_HBM_SWITCH, enabled).commit();
             FileUtils.enableService(getContext());
             return true;
-           }
+        } else if (preference == mThresholdPreference) {
+            writeIntPreference(KEY_AUTO_HBM_THRESHOLD, (Integer) newValue);
+            return true;
+        } else if (preference == mTimePreference) {
+            writeIntPreference(KEY_HBM_DISABLE_TIME, (Integer) newValue);
+            return true;
+        }
 
         return false;
+    }
+
+    private void writeIntPreference(String key, int value) {
+        PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
+                .putString(key, String.valueOf(value)).apply();
+    }
+
+    private static int readIntPreference(SharedPreferences prefs, String key, int defaultValue) {
+        Object stored = prefs.getAll().get(key);
+        if (stored instanceof Integer) {
+            return (Integer) stored;
+        }
+        if (stored instanceof String) {
+            try {
+                return Integer.parseInt((String) stored);
+            } catch (NumberFormatException ignored) {
+                // fall through to the default
+            }
+        }
+        return defaultValue;
     }
 }

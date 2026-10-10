@@ -21,19 +21,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.materialswitch.MaterialSwitch;
+
 import org.lineageos.settings.R;
 
 public class ChargeSettingsFragment extends Fragment {
 
     private ChargeUtils mChargeUtils;
-    private Switch mBypassSwitch;
+    private MaterialSwitch mBypassSwitch;
     private TextView mSummary;
     private boolean mUpdatingSwitch;
 

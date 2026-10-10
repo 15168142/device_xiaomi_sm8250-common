@@ -27,7 +27,6 @@
     <org.lineageos.settings.CustomSeekBarPreference
         android:key="saturation"
         android:max="200"
-        android:min="0"
         android:defaultValue="100"
         settings:continuousUpdates="true" />
 

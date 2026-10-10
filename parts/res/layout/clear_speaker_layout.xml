@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingHorizontal="24dp"
         android:paddingTop="20dp"
         android:paddingBottom="32dp">
 
@@ -18,33 +17,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:paddingHorizontal="24dp"
             android:text="@string/clear_speaker_summary"
             android:textAppearance="@style/TextAppearance.SettingsLib.TitleMedium"
             android:textColor="@color/settingslib_materialColorOnSurfaceVariant" />
 
-        <FrameLayout
-            android:layout_width="272dp"
-            android:layout_height="272dp"
+        <ImageButton
+            android:id="@+id/clear_speaker_action"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/parts_ring_background">
-
-            <ImageButton
-                android:id="@+id/clear_speaker_action"
-                android:layout_width="112dp"
-                android:layout_height="112dp"
-                android:layout_gravity="center"
-                android:background="@drawable/parts_circle_button_background"
-                android:contentDescription="@string/clear_speaker_start"
-                android:padding="30dp"
-                android:src="@drawable/ic_play" />
-        </FrameLayout>
+            android:background="@drawable/parts_circle_button_background"
+            android:contentDescription="@string/clear_speaker_start"
+            android:padding="30dp"
+            android:src="@drawable/ic_play" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/parts_card_background"
-            android:paddingHorizontal="24dp"
+            android:background="@drawable/settingslib_round_background"
+            android:paddingHorizontal="32dp"
             android:paddingVertical="22dp"
             android:text="@string/clear_speaker_description"
             android:textAppearance="@style/TextAppearance.SettingsLib.BodyLarge"
