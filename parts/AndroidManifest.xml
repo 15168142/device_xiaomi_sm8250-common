@@ -53,15 +53,7 @@
             android:name=".dirac.DiracActivity"
             android:exported="false"
             android:label="@string/dirac_title"
-            android:theme="@style/Theme.SubSettingsBase.Expressive">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <meta-data android:name="com.android.settings.category"
-                       android:value="com.android.settings.category.ia.sound" />
-            <meta-data android:name="com.android.settings.summary"
-                       android:resource="@string/dirac_summary" />
-        </activity>
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
         <service
             android:name=".thermal.ThermalService"
@@ -117,9 +109,9 @@
         </service>
 
         <activity
-            android:name=".thermal.ThermalActivity"
+            android:name=".XiaomiPartsActivity"
             android:exported="false"
-            android:label="@string/thermal_title"
+            android:label="@string/app_title"
             android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
@@ -130,17 +122,23 @@
                 android:value="com.android.settings.category.ia.system" />
             <meta-data
                 android:name="com.android.settings.icon"
-                android:resource="@drawable/ic_settings_thermal" />
+                android:resource="@drawable/ic_xiaomi_parts" />
             <meta-data
                 android:name="com.android.settings.icon_tintable"
                 android:value="true" />
             <meta-data
+                android:name="com.android.settings.keywords"
+                android:resource="@array/xiaomi_parts_keywords" />
+            <meta-data
                 android:name="com.android.settings.order"
                 android:value="-255" />
-	    <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/thermal_summary" />
         </activity>
+
+        <activity
+            android:name=".thermal.ThermalActivity"
+            android:exported="false"
+            android:label="@string/thermal_title"
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
         <service
             android:name=".RefreshRateTileService"
@@ -157,18 +155,7 @@
             android:name=".refreshrate.RefreshActivity"
             android:label="@string/refresh_title"
             android:exported="false"
-            android:theme="@style/Theme.SubSettingsBase.Expressive">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.display" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/refresh_summary" />
-        </activity>
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
         <service
             android:name=".refreshrate.RefreshService"
@@ -177,59 +164,10 @@
         </service>
 
         <activity
-            android:name=".touchsampling.TouchSamplingSettingsActivity"
-            android:label="@string/htsr_enable_title"
-            android:theme="@style/Theme.SubSettingsBase.Expressive"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.media.action.DISPLAY_AUDIO_EFFECT_CONTROL_PANEL" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.CATEGORY_CONTENT_MUSIC" />
-            </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.display" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/htsr_enable_summary" />
-        </activity>
-
-        <activity
-            android:name=".display.DcDimmingSettingsActivity"
-            android:label="@string/dc_dimming_enable_title"
-            android:exported="true"
-            android:theme="@style/Theme.SubSettingsBase.Expressive">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.display" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/dc_dimming_enable_summary" />
-        </activity>
-
-
-        <activity
             android:name=".hbm.HBMActivity"
             android:label="@string/hbm_fragment_title"
             android:exported="false"
-            android:theme="@style/Theme.SubSettingsBase.Expressive">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.display" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/hbm_fragment_summary" />
-        </activity>
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
         <service
             android:name=".hbm.AutoHBMService"
@@ -251,17 +189,7 @@
             android:name=".charge.ChargeActivity"
             android:label="@string/charge_bypass_title"
             android:exported="true"
-            android:theme="@style/Theme.SubSettingsBase.Expressive">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.battery" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/charge_bypass_summary" />
-        </activity>
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
         <service
             android:name=".charge.BypassChargeTileService"
@@ -291,32 +219,12 @@
             android:name=".saturation.SaturationActivity"
             android:label="@string/saturation_title"
             android:exported="true"
-            android:theme="@style/Theme.SubSettingsBase.Expressive">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.display" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/saturation_summary" />
-        </activity>
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
     
         <activity
             android:name=".speaker.ClearSpeakerActivity"
             android:exported="false"
             android:label="@string/clear_speaker_title"
-            android:theme="@style/Theme.SubSettingsBase.Expressive">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.sound" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/clear_speaker_summary" />
-        </activity>
+            android:theme="@style/Theme.SubSettingsBase.Expressive" />
     </application>
 </manifest>

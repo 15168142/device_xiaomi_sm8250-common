@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 The LineageOS Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/app_title">
+
+    <PreferenceCategory
+        android:key="display_category"
+        android:title="@string/display_category_title">
+
+        <Preference
+            android:key="xiaomi_hbm"
+            android:icon="@drawable/ic_hbm_tile"
+            android:title="@string/hbm_fragment_title"
+            android:summary="@string/hbm_fragment_summary" />
+
+        <Preference
+            android:key="xiaomi_saturation"
+            android:icon="@drawable/ic_saturation_tile"
+            android:title="@string/saturation_title"
+            android:summary="@string/saturation_summary" />
+
+        <Preference
+            android:key="xiaomi_refresh"
+            android:icon="@drawable/ic_qs_refresh_rate"
+            android:title="@string/refresh_title"
+            android:summary="@string/refresh_summary" />
+
+        <SwitchPreferenceCompat
+            android:key="dc_dimming_enable"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_dcdimming"
+            android:title="@string/dc_dimming_enable_title"
+            android:summary="@string/dc_dimming_enable_summary" />
+
+        <SwitchPreferenceCompat
+            android:key="htsr_enable"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_htsr"
+            android:title="@string/htsr_enable_title"
+            android:summary="@string/htsr_enable_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="sound_category"
+        android:title="@string/sound_category_title">
+
+        <Preference
+            android:key="xiaomi_dirac"
+            android:icon="@drawable/ic_headphone"
+            android:title="@string/dirac_title"
+            android:summary="@string/dirac_summary" />
+
+        <Preference
+            android:key="xiaomi_clear_speaker"
+            android:icon="@drawable/ic_clear_speaker"
+            android:title="@string/clear_speaker_title"
+            android:summary="@string/clear_speaker_summary" />
+    </PreferenceCategory>
+
+    <com.android.settingslib.widget.UntitledPreferenceCategory
+        android:key="system_category">
+
+        <Preference
+            android:key="xiaomi_thermal"
+            android:icon="@drawable/ic_settings_thermal"
+            android:title="@string/thermal_title"
+            android:summary="@string/thermal_summary" />
+
+        <Preference
+            android:key="xiaomi_charge"
+            android:icon="@drawable/charger_24px"
+            android:title="@string/charge_bypass_title"
+            android:summary="@string/charge_bypass_summary" />
+    </com.android.settingslib.widget.UntitledPreferenceCategory>
+
+</PreferenceScreen>

@@ -18,7 +18,6 @@
 
 package org.lineageos.settings.hbm;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -85,7 +84,7 @@ public class HBMModeTileService extends TileService {
     public void onClick() {
         super.onClick();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final boolean dcDimmingEnabled = sharedPrefs.getBoolean(DcDimmingTileService.DC_DIMMING_ENABLE_KEY, false);
+        final boolean dcDimmingEnabled = DcDimmingUtils.isEnabled(this);
         if (dcDimmingEnabled) {
             return;
         }

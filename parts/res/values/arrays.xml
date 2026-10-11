@@ -114,5 +114,34 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
-    </string-array> 
+    </string-array>
+
+    <!-- Keywords for the Xiaomi Settings entry, comma free list of searchable terms -->
+    <string-array name="xiaomi_parts_keywords">
+        <item>xiaomi</item>
+        <item>parts</item>
+        <item>thermal</item>
+        <item>profiles</item>
+        <item>performance</item>
+        <item>hbm</item>
+        <item>brightness</item>
+        <item>saturation</item>
+        <item>display</item>
+        <item>color</item>
+        <item>dc dimming</item>
+        <item>dimming</item>
+        <item>flicker</item>
+        <item>refresh rate</item>
+        <item>touch</item>
+        <item>responsiveness</item>
+        <item>polling</item>
+        <item>bypass charging</item>
+        <item>charging</item>
+        <item>dirac</item>
+        <item>mi sound</item>
+        <item>audio</item>
+        <item>sound</item>
+        <item>clear speaker</item>
+        <item>speaker</item>
+    </string-array>
 </resources>

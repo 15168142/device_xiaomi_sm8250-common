@@ -54,7 +54,7 @@ public class HBMModeSwitch implements OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         Boolean enabled = (Boolean) newValue;
-        boolean dcDimmingEnabled = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(DcDimmingTileService.DC_DIMMING_ENABLE_KEY, false);
+        boolean dcDimmingEnabled = DcDimmingUtils.isEnabled(mContext);
     	if (dcDimmingEnabled) {
             return false;
         }
