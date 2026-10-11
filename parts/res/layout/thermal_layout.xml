@@ -5,70 +5,16 @@
     android:background="?android:attr/colorBackground"
     android:clipChildren="true"
     android:clipToPadding="true"
-    android:orientation="vertical"
-    android:paddingHorizontal="12dp">
-
-    <LinearLayout
-        android:id="@+id/thermal_enabled_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/parts_card_background"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:minHeight="72dp"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="12dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/thermal_enable_title"
-                android:textAppearance="@style/TextAppearance.SettingsLib.TitleMedium"
-                android:textColor="@color/settingslib_materialColorOnSurface" />
-
-            <TextView
-                android:id="@+id/thermal_enabled_summary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/thermal_enable_summary"
-                android:textAppearance="@style/TextAppearance.SettingsLib.BodyMedium"
-                android:textColor="@color/settingslib_materialColorOnSurfaceVariant" />
-        </LinearLayout>
-
-        <Switch
-            android:id="@+id/thermal_enabled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/thermal_enable_title" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
-        android:text="@string/apps_title"
-        android:textAppearance="@style/TextAppearance.SettingsLib.TitleSmall"
-        android:textColor="@color/settingslib_materialColorPrimary" />
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/thermal_search_container"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+        android:layout_marginTop="8dp"
         android:background="@drawable/parts_search_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -108,14 +54,61 @@
             android:visibility="gone" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/thermal_enabled_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:minHeight="72dp"
+        android:orientation="horizontal"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingVertical="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/thermal_enable_title"
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/thermal_enabled_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/thermal_enable_summary"
+                android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+                android:textColor="?android:attr/textColorSecondary" />
+        </LinearLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/thermal_enabled"
+            style="?expressiveSwitchStyle"
+            android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/thermal_enable_title" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/thermal_rv_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:clipChildren="true"
-        android:clipToPadding="true"
         android:background="?android:attr/colorBackground"
-        android:paddingBottom="8dp"
-        android:scrollbarStyle="insideOverlay" />
+        android:clipChildren="true"
+        android:clipToPadding="false" />
 </LinearLayout>

@@ -27,11 +27,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.button.MaterialButton;
 
 import org.lineageos.settings.R;
 
@@ -44,7 +45,7 @@ public class ClearSpeakerFragment extends Fragment {
 
     private final Handler mHandler = new Handler(Looper.getMainLooper());
     private MediaPlayer mMediaPlayer;
-    private ImageButton mActionButton;
+    private MaterialButton mActionButton;
     private boolean mPlaying;
 
     @Override
@@ -126,8 +127,8 @@ public class ClearSpeakerFragment extends Fragment {
         if (mActionButton == null) {
             return;
         }
-        mActionButton.setImageResource(mPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
-        mActionButton.setContentDescription(getString(mPlaying
-                ? R.string.clear_speaker_stop : R.string.clear_speaker_start));
+        mActionButton.setIconResource(mPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
+        mActionButton.setText(mPlaying
+                ? R.string.clear_speaker_stop : R.string.clear_speaker_start);
     }
 }

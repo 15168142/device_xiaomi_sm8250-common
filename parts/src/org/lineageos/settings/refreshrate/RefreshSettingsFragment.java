@@ -16,7 +16,6 @@
 package org.lineageos.settings.refreshrate;
 
 import android.annotation.Nullable;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -26,8 +25,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.SectionIndexer;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -194,26 +196,12 @@ public class RefreshSettingsFragment extends SettingsBasePreferenceFragment
         return Math.max(0, Math.min(state, MODE_LABELS.length - 1));
     }
 
-    private void showModeDialog(ApplicationsState.AppEntry entry, int selectedState) {
-        final String[] labels = new String[MODE_LABELS.length];
+    private String[] modeLabels() {
+        String[] labels = new String[MODE_LABELS.length];
         for (int i = 0; i < MODE_LABELS.length; i++) {
             labels[i] = getString(MODE_LABELS[i]);
         }
-
-        new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.refresh_rate_dialog_title, entry.label))
-                .setSingleChoiceItems(labels, selectedState, (dialog, which) -> {
-                    if (which != selectedState) {
-                        mRefreshUtils.writePackage(entry.info.packageName, which);
-                        int position = mAllPackagesAdapter.indexOf(entry);
-                        if (position >= 0) {
-                            mAllPackagesAdapter.notifyItemChanged(position);
-                        }
-                    }
-                    dialog.dismiss();
-                })
-                .setNegativeButton(android.R.string.cancel, null)
-                .show();
+        return labels;
     }
 
     private int getStateDrawable(int state) {
@@ -230,7 +218,7 @@ public class RefreshSettingsFragment extends SettingsBasePreferenceFragment
 
     private class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView title;
-        private final TextView mode;
+        private final Spinner mode;
         private final ImageView icon;
         private final ImageView stateIcon;
 
@@ -240,11 +228,13 @@ public class RefreshSettingsFragment extends SettingsBasePreferenceFragment
             mode = view.findViewById(R.id.app_mode);
             icon = view.findViewById(R.id.app_icon);
             stateIcon = view.findViewById(R.id.state);
+            mode.setAdapter(new ArrayAdapter<>(view.getContext(),
+                    android.R.layout.simple_spinner_dropdown_item, modeLabels()));
         }
     }
 
     private class AllPackagesAdapter extends RecyclerView.Adapter<ViewHolder>
-            implements SectionIndexer {
+            implements AdapterView.OnItemSelectedListener, SectionIndexer {
 
         private List<ApplicationsState.AppEntry> mEntries = new ArrayList<>();
         private String[] mSections = new String[0];
@@ -263,8 +253,10 @@ public class RefreshSettingsFragment extends SettingsBasePreferenceFragment
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext())
+            ViewHolder holder = new ViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.refresh_list_item, parent, false));
+            holder.mode.setOnItemSelectedListener(this);
+            return holder;
         }
 
         @Override
@@ -277,14 +269,29 @@ public class RefreshSettingsFragment extends SettingsBasePreferenceFragment
 
             int packageState = clampState(
                     mRefreshUtils.getStateForPackage(entry.info.packageName));
-            holder.mode.setText(MODE_LABELS[packageState]);
-            holder.mode.setOnClickListener(v -> showModeDialog(entry, packageState));
             holder.title.setOnClickListener(v -> holder.mode.performClick());
+            holder.mode.setTag(entry);
+            holder.mode.setSelection(packageState, false);
             holder.stateIcon.setImageResource(getStateDrawable(packageState));
         }
 
-        private int indexOf(ApplicationsState.AppEntry entry) {
-            return mEntries.indexOf(entry);
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            final ApplicationsState.AppEntry entry =
+                    (ApplicationsState.AppEntry) parent.getTag();
+            if (entry == null) {
+                return;
+            }
+
+            int currentState = mRefreshUtils.getStateForPackage(entry.info.packageName);
+            if (currentState != position) {
+                mRefreshUtils.writePackage(entry.info.packageName, position);
+                notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
         }
 
         private void setEntries(List<ApplicationsState.AppEntry> entries,
