@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2015-2016 The CyanogenMod Project
- *               2017,2021-2022 The LineageOS Project
+ * Copyright (C) 2026 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +14,22 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.display;
+package org.lineageos.settings;
 
 import android.os.Bundle;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
 
-public class DcDimmingSettingsActivity extends CollapsingToolbarBaseActivity  {
+public class XiaomiPartsActivity extends CollapsingToolbarBaseActivity {
 
-    private static final String TAG_DCDIMMING = "dcdimming";
+    private static final String TAG_XIAOMI_PARTS = "xiaomi_parts";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportFragmentManager().beginTransaction().replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame,
-                new DcDimmingSettingsFragment(), TAG_DCDIMMING).commit();
+
+        getSupportFragmentManager().beginTransaction().replace(
+                com.android.settingslib.collapsingtoolbar.R.id.content_frame,
+                new XiaomiPartsFragment(), TAG_XIAOMI_PARTS).commit();
     }
 }

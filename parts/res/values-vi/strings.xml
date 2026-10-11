@@ -18,6 +18,8 @@
 
     <!-- Xiaomi Settings -->
     <string name="app_title">Cài đặt Xiaomi</string>
+    <string name="display_category_title">Màn hình</string>
+    <string name="sound_category_title">Âm thanh</string>
     <string name="tile_add">Thêm ô</string>
     <string name="tile_added">Ô đã được thêm</string>
     <string name="tile_not_added">Ô chưa được thêm</string>
