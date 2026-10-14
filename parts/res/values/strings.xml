@@ -25,8 +25,6 @@
     <string name="tile_added">Tile added</string>
     <string name="tile_not_added">Tile not added</string>
     <string name="tile_already_added">Tile already added</string>
-    <string name="tile_on">On</string>
-    <string name="tile_off">Off</string>
 
 
     <!-- HBM settings -->
@@ -48,7 +46,6 @@
     <string name="thermal_enable_title">Use thermal profiles</string>
     <string name="thermal_enable_summary">Per-app thermal profile configuration</string>
     <string name="thermal_disabled_summary">All apps use the default profile. Saved profiles resume when enabled.</string>
-    <string name="thermal_profile_dialog_title">Thermal profile for %1$s</string>
     <string name="thermal_default">Default</string>
     <string name="thermal_benchmark">Benchmark</string>
     <string name="thermal_browser">Browser</string>
@@ -73,7 +70,6 @@
     <!-- Per-app refresh rate -->
     <string name="refresh_title">Per-app refresh rate</string>
     <string name="refresh_summary">Set the maximum refresh rate for a specific application</string>
-    <string name="refresh_rate_dialog_title">Refresh rate for %1$s</string>
     <string name="refresh_default">Default</string>
     <string name="refresh_standard">60Hz</string>    
     <string name="refresh_extreme">120Hz</string>    

@@ -75,6 +75,12 @@ public class ClearSpeakerFragment extends Fragment {
         super.onStop();
     }
 
+    @Override
+    public void onDestroyView() {
+        mActionButton = null;
+        super.onDestroyView();
+    }
+
     private boolean startPlaying() {
         requireActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
         MediaPlayer player = new MediaPlayer();

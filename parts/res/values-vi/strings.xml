@@ -24,8 +24,6 @@
     <string name="tile_added">Ô đã được thêm</string>
     <string name="tile_not_added">Ô chưa được thêm</string>
     <string name="tile_already_added">Ô đã thêm trước đó</string>
-    <string name="tile_on">Bật</string>
-    <string name="tile_off">Tắt</string>
 
     <!-- HBM settings -->
     <string name="hbm_fragment_title">Chế độ độ sáng cao</string>
@@ -46,7 +44,6 @@
     <string name="thermal_enable_title">Sử dụng hồ sơ tối ưu hóa</string>
     <string name="thermal_enable_summary">Cấu hình hồ sơ tối ưu hóa cho từng ứng dụng</string>
     <string name="thermal_disabled_summary">Tất cả ứng dụng đều dùng hồ sơ mặc định. Hồ sơ đã lưu sẽ được khôi phục khi bật</string>
-    <string name="thermal_profile_dialog_title">Hồ sơ tối ưu hóa cho %1$s</string>
     <string name="thermal_default">Không tối ưu hóa</string>
     <string name="thermal_benchmark">Hiệu suất</string>
     <string name="thermal_browser">Trình duyệt</string>
@@ -71,7 +68,6 @@
     <!-- Per-app refresh rate -->
     <string name="refresh_title">Tốc độ làm mới cho mỗi ứng dụng</string>
     <string name="refresh_summary">Đặt tốc độ làm mới cụ thể cho từng ứng dụng</string>
-    <string name="refresh_rate_dialog_title">Tốc độ làm mới cho %1$s</string>
     <string name="refresh_default">Mặc định</string>
     <string name="refresh_standard">60Hz</string>
     <string name="refresh_extreme">120Hz</string>
