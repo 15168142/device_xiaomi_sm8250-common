@@ -43,7 +43,7 @@
     <string name="thermal_summary">Điều chỉnh hồ sơ tối ưu hóa cho từng ứng dụng để có hiệu suất tối ưu</string>
     <string name="thermal_enable_title">Sử dụng hồ sơ tối ưu hóa</string>
     <string name="thermal_enable_summary">Cấu hình hồ sơ tối ưu hóa cho từng ứng dụng</string>
-    <string name="thermal_disabled_summary">Tất cả ứng dụng đều dùng hồ sơ mặc định. Hồ sơ đã lưu sẽ được khôi phục khi bật</string>
+    <string name="thermal_disabled_summary">Tất cả ứng dụng sẽ dùng hồ sơ mặc định. Hồ sơ đã lưu sẽ được khôi phục khi bật lại</string>
     <string name="thermal_default">Không tối ưu hóa</string>
     <string name="thermal_benchmark">Hiệu suất</string>
     <string name="thermal_browser">Trình duyệt</string>
@@ -75,7 +75,7 @@
     <!-- Clear Speaker -->
     <string name="clear_speaker_title">Làm sạch loa</string>
     <string name="clear_speaker_summary">Phát một đoạn âm thanh dài 30 giây để làm sạch loa</string>
-    <string name="clear_speaker_description">Chạy tính năng này một hoặc hai lần nếu bạn thấy loa của mình bị bụi bám nhẹ. Đặt âm lượng phương tiện ở mức tối đa.\n\nNếu loa bị chặn nhiều, hãy chạy tính năng này 2-5 lần trong khi lắc thiết bị của bạn với loa hướng xuống dưới.\n\nCẢNH BÁO: Đảm bảo rằng tai nghe đã được rút ra.</string>
+    <string name="clear_speaker_description">Chạy tính năng này một hoặc hai lần nếu bạn thấy loa của mình bị bụi bám nhẹ. Đặt âm lượng phương tiện ở mức tối đa.\n\nNếu loa bị chặn nhiều, hãy chạy tính năng này 2 đến 5 lần trong khi lắc thiết bị của bạn với loa hướng xuống dưới.\n\nCẢNH BÁO: Đảm bảo rằng tai nghe đã được rút ra!</string>
     <string name="clear_speaker_start">Bắt đầu làm sạch loa</string>
     <string name="clear_speaker_stop">Dừng làm sạch loa</string>
 
@@ -153,7 +153,7 @@
     <!-- Saturation -->
     <string name="saturation_title">Độ bão hoà</string>
     <string name="saturation_summary">Điều chỉnh mức độ bão hoà của màn hình</string>
-    <string name="saturation_footer_summary">Thay đổi chế độ màu trong cài đặt hiển thị sẽ ghi đè mức độ bão hoà, yêu cầu thiết lập lại</string>
+    <string name="saturation_footer_summary">Việc thay đổi chế độ màu trong cài đặt hiển thị sẽ ghi đè mức độ bão hoà, yêu cầu thiết lập lại</string>
 
     <!-- Custom seekbar -->
     <string name="custom_seekbar_value">Giá trị: <xliff:g id="v">%s</xliff:g></string>
