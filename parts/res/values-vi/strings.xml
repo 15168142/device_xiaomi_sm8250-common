@@ -177,6 +177,10 @@
     <string name="charge_bypass_warning">Cảnh báo: Sạc trực tiếp có thể làm tăng nhiệt độ thiết bị hoặc gây hỏng pin, nên sử dụng cẩn thận</string>
     <string name="charge_bypass_unavailable">Kernel hiện không hỗ trợ tính năng sạc trực tiếp</string>
     <string name="charge_bypass_safety_failed">Không thể bật sạc trực tiếp: %s</string>
+    <string name="charge_bypass_ac_not_connected">Chưa kết nối bộ sạc</string>
+    <string name="charge_bypass_temp_too_high">Nhiệt độ pin quá cao (<xliff:g id="temp">%.1f</xliff:g>°C)</string>
+    <string name="charge_bypass_level_too_low">Mức pin quá thấp (<xliff:g id="level">%d</xliff:g>%%)</string>
+    <string name="charge_bypass_checks_passed">Tất cả các kiểm tra an toàn đã đạt</string>
 
     <!-- Shared app-list controls -->
     <string name="apps_title">Ứng dụng</string>
