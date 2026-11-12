@@ -1,0 +1,6 @@
+# allow controlling AW8697 gain
+allow hal_vibrator_default sysfs_vibrator:file rw_file_perms;
+
+# allow to submit bounded custom waveforms and read completion metadata
+allow hal_vibrator_default vendor_sysfs_aw8697_custom_wave:file rw_file_perms;
+allow hal_vibrator_default vendor_sysfs_audio:file r_file_perms;
