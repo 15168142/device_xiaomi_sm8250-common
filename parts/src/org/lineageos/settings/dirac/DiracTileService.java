@@ -1,10 +1,8 @@
 package org.lineageos.settings.dirac;
 
-import android.content.Context;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
-import org.lineageos.settings.R;
 
 public class DiracTileService extends TileService {
 

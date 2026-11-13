@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">Escolha uma predefinição</string>
     <string name="dirac_hifi_title">Áudio Hi-Fi</string>
     <string name="dirac_hifi_summary">Reduz o ruído e distorção e aumenta a qualidade do áudio</string>
-    <string name="dirac_hifi_enable_title">Ativar Hi-fi</string>
     <string name="dirac_headset_default">Padrão</string>
     <string name="dirac_headset_earbuds">Mi Earbuds</string>
     <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>

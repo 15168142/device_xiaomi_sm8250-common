@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.UserHandle;
-import android.view.Display;
 
 import android.provider.Settings;
 import androidx.preference.PreferenceManager;

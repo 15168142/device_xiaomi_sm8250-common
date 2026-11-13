@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">프리셋 선택</string>
     <string name="dirac_hifi_title">Hi-Fi 오디오</string>
     <string name="dirac_hifi_summary">노이즈와 왜곡을 줄이고 음질을 향상시킵니다.</string>
-    <string name="dirac_hifi_enable_title">Hi-Fi 활성화</string>
     <string name="dirac_headset_default">기본</string>
     <string name="dirac_headset_earbuds">Mi 이어버드</string>
     <string name="dirac_headset_in_ear_2013">Mi 인이어 (2013)</string>

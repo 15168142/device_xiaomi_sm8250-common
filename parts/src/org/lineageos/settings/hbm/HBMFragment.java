@@ -20,21 +20,19 @@
 package org.lineageos.settings.hbm;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceManager;
 import androidx.preference.TwoStatePreference;
 
+import com.android.settingslib.widget.SettingsBasePreferenceFragment;
+
+import org.lineageos.settings.CustomSeekBarPreference;
 import org.lineageos.settings.utils.FileUtils;
 import org.lineageos.settings.R;
 
-public class HBMFragment extends PreferenceFragment
+public class HBMFragment extends SettingsBasePreferenceFragment
         implements Preference.OnPreferenceChangeListener {
     private static final String TAG = HBMFragment.class.getSimpleName();
 
@@ -43,22 +41,59 @@ public class HBMFragment extends PreferenceFragment
     public static final String KEY_AUTO_HBM_THRESHOLD = "auto_hbm_threshold";
     public static final String KEY_HBM_DISABLE_TIME = "hbm_disable_time";
 
-    private static TwoStatePreference mHBMModeSwitch;
-    private static TwoStatePreference mAutoHBMSwitch;
+    private static final int THRESHOLD_STEP = 1000;
+    private static final int THRESHOLD_DEFAULT = 7000;
+    private static final int DISABLE_TIME_MIN = 1;
+    private static final int DISABLE_TIME_DEFAULT = 1;
+
+    private TwoStatePreference mHBMModeSwitch;
+    private TwoStatePreference mAutoHBMSwitch;
+    private CustomSeekBarPreference mThresholdPreference;
+    private CustomSeekBarPreference mTimePreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getContext());
-        addPreferencesFromResource(R.xml.hbm_settings);
+        setPreferencesFromResource(R.xml.hbm_settings, rootKey);
 
-        // HBM
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final boolean hbmSupported = HBMModeSwitch.isSupported();
+
         mHBMModeSwitch = (TwoStatePreference) findPreference(KEY_HBM_SWITCH);
-	mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch(getContext()));
+        mAutoHBMSwitch = (TwoStatePreference) findPreference(KEY_AUTO_HBM_SWITCH);
+        mThresholdPreference = findPreference(KEY_AUTO_HBM_THRESHOLD);
+        mTimePreference = findPreference(KEY_HBM_DISABLE_TIME);
+        if (mHBMModeSwitch == null || mAutoHBMSwitch == null
+                || mThresholdPreference == null || mTimePreference == null) return;
+
+        // hbm
+        mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch(getContext()));
+        if (!hbmSupported) {
+            mHBMModeSwitch.setEnabled(false);
+            mHBMModeSwitch.setSummary(R.string.hbm_mode_summary_not_supported);
+        }
 
         // AutoHBM
-        mAutoHBMSwitch = (TwoStatePreference) findPreference(KEY_AUTO_HBM_SWITCH);
         mAutoHBMSwitch.setOnPreferenceChangeListener(this);
-        mAutoHBMSwitch.setChecked(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(HBMFragment.KEY_AUTO_HBM_SWITCH, false));
+        mAutoHBMSwitch.setChecked(prefs.getBoolean(KEY_AUTO_HBM_SWITCH, false));
+        if (!hbmSupported) {
+            mAutoHBMSwitch.setEnabled(false);
+            mAutoHBMSwitch.setSummary(R.string.auto_hbm_summary_not_supported);
+        }
+
+        // auto hbm threshold
+        mThresholdPreference.setSliderIncrement(THRESHOLD_STEP);
+        mThresholdPreference.setOnPreferenceChangeListener(this);
+        mThresholdPreference.setValue(
+                readIntPreference(prefs, KEY_AUTO_HBM_THRESHOLD, THRESHOLD_DEFAULT));
+        if (!hbmSupported) mThresholdPreference.setEnabled(false);
+
+        // auto hbm disable delay
+        mTimePreference.setMin(DISABLE_TIME_MIN);
+        mTimePreference.setSliderIncrement(1);
+        mTimePreference.setOnPreferenceChangeListener(this);
+        mTimePreference.setValue(
+                readIntPreference(prefs, KEY_HBM_DISABLE_TIME, DISABLE_TIME_DEFAULT));
+        if (!hbmSupported) mTimePreference.setEnabled(false);
     }
 
     public static boolean isAUTOHBMEnabled(Context context) {
@@ -73,8 +108,34 @@ public class HBMFragment extends PreferenceFragment
             prefChange.putBoolean(KEY_AUTO_HBM_SWITCH, enabled).commit();
             FileUtils.enableService(getContext());
             return true;
-           }
+        } else if (preference == mThresholdPreference) {
+            writeIntPreference(KEY_AUTO_HBM_THRESHOLD, (Integer) newValue);
+            return true;
+        } else if (preference == mTimePreference) {
+            writeIntPreference(KEY_HBM_DISABLE_TIME, (Integer) newValue);
+            return true;
+        }
 
         return false;
+    }
+
+    private void writeIntPreference(String key, int value) {
+        PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
+                .putString(key, String.valueOf(value)).apply();
+    }
+
+    private static int readIntPreference(SharedPreferences prefs, String key, int defaultValue) {
+        Object stored = prefs.getAll().get(key);
+        if (stored instanceof Integer) {
+            return (Integer) stored;
+        }
+        if (stored instanceof String) {
+            try {
+                return Integer.parseInt((String) stored);
+            } catch (NumberFormatException ignored) {
+                // fall through to the default
+            }
+        }
+        return defaultValue;
     }
 }

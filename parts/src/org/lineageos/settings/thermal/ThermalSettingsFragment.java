@@ -1,12 +1,12 @@
-/**
+/*
  * Copyright (C) 2020 The LineageOS Project
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,33 +16,34 @@
 package org.lineageos.settings.thermal;
 
 import android.annotation.Nullable;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.util.TypedValue;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.settingslib.applications.ApplicationsState;
 import com.android.settingslib.widget.SettingsBasePreferenceFragment;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import org.lineageos.settings.R;
 
@@ -50,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
@@ -63,6 +65,10 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
             new HashMap<String, ApplicationsState.AppEntry>();
 
     private RecyclerView mAppsRecyclerView;
+    private EditText mSearchView;
+    private ImageButton mClearSearch;
+    private MaterialSwitch mEnabledSwitch;
+    private boolean mProfilesEnabled;
 
     private ThermalUtils mThermalUtils;
 
@@ -74,45 +80,98 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mApplicationsState = ApplicationsState.getInstance(getActivity().getApplication());
+        mApplicationsState = ApplicationsState.getInstance(requireActivity().getApplication());
         mSession = mApplicationsState.newSession(this);
-        mSession.onResume();
-        mActivityFilter = new ActivityFilter(getActivity().getPackageManager());
+        mActivityFilter = new ActivityFilter(requireActivity().getPackageManager());
 
-        mAllPackagesAdapter = new AllPackagesAdapter(getActivity());
+        mAllPackagesAdapter = new AllPackagesAdapter(requireContext());
 
-        mThermalUtils = new ThermalUtils(getActivity());
+        mThermalUtils = new ThermalUtils(requireContext());
+        mProfilesEnabled = ThermalUtils.isServiceEnabled(requireContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.thermal_layout, container, false);
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mAppsRecyclerView = view.findViewById(R.id.thermal_rv_view);
-        mAppsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAppsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         mAppsRecyclerView.setAdapter(mAllPackagesAdapter);
-    }
 
+        mEnabledSwitch = view.findViewById(R.id.thermal_enabled);
+        mEnabledSwitch.setChecked(mProfilesEnabled);
+        mEnabledSwitch.setOnCheckedChangeListener((buttonView, enabled) -> {
+            mProfilesEnabled = enabled;
+            ThermalUtils.setServiceEnabled(requireContext(), enabled);
+            updateEnabledState();
+        });
+        view.findViewById(R.id.thermal_enabled_container).setOnClickListener(
+                v -> mEnabledSwitch.toggle());
+
+        mSearchView = view.findViewById(R.id.thermal_search);
+        mClearSearch = view.findViewById(R.id.thermal_search_clear);
+        mSearchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence text, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int before, int count) {
+                mClearSearch.setVisibility(text.length() == 0 ? View.GONE : View.VISIBLE);
+                mAllPackagesAdapter.filter(text.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        mClearSearch.setOnClickListener(v -> {
+            mSearchView.setText("");
+            mSearchView.requestFocus();
+        });
+
+        updateEnabledState();
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setTitle(getResources().getString(R.string.thermal_title));
+        requireActivity().setTitle(R.string.thermal_title);
+        mProfilesEnabled = ThermalUtils.isServiceEnabled(requireContext());
+        mEnabledSwitch.setChecked(mProfilesEnabled);
+        updateEnabledState();
+        mSession.onResume();
         rebuild();
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-
+    public void onPause() {
         mSession.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mAppsRecyclerView != null) {
+            mAppsRecyclerView.setAdapter(null);
+            mAppsRecyclerView = null;
+        }
+        mSearchView = null;
+        mClearSearch = null;
+        mEnabledSwitch = null;
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
         mSession.onDestroy();
+        super.onDestroy();
     }
 
     @Override
@@ -123,7 +182,7 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
 
     @Override
     public void onRebuildComplete(ArrayList<ApplicationsState.AppEntry> entries) {
-        if (entries != null) {
+        if (entries != null && isAdded()) {
             handleAppEntries(entries);
             mAllPackagesAdapter.notifyDataSetChanged();
         }
@@ -154,59 +213,32 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
     public void onRunningStateChanged(boolean running) {
     }
 
-    @Override
-    public void setDivider(@androidx.annotation.Nullable final Drawable divider) {
-        RecyclerView list = getListView();
-        if (list == null) {
-            View root = getView();
-            if (root != null) {
-                root.post(() -> setDivider(divider));
-            }
-            return;
-        }
-
-        super.setDivider(divider);
-    }
-
     private void handleAppEntries(List<ApplicationsState.AppEntry> entries) {
-        final ArrayList<String> sections = new ArrayList<String>();
-        final ArrayList<Integer> positions = new ArrayList<Integer>();
-        final PackageManager pm = getActivity().getPackageManager();
-        String lastSectionIndex = null;
-        int offset = 0;
-
-        for (int i = 0; i < entries.size(); i++) {
-            final ApplicationInfo info = entries.get(i).info;
-            final String label = (String) info.loadLabel(pm);
-            final String sectionIndex;
-
-            if (!info.enabled) {
-                sectionIndex = "--"; // XXX
-            } else if (TextUtils.isEmpty(label)) {
-                sectionIndex = "";
-            } else {
-                sectionIndex = label.substring(0, 1).toUpperCase();
-            }
-
-            if (lastSectionIndex == null ||
-                    !TextUtils.equals(sectionIndex, lastSectionIndex)) {
-                sections.add(sectionIndex);
-                positions.add(offset);
-                lastSectionIndex = sectionIndex;
-            }
-
-            offset++;
-        }
-
-        mAllPackagesAdapter.setEntries(entries, sections, positions);
         mEntryMap.clear();
-        for (ApplicationsState.AppEntry e : entries) {
-            mEntryMap.put(e.info.packageName, e);
+        for (ApplicationsState.AppEntry entry : entries) {
+            mEntryMap.put(entry.info.packageName, entry);
         }
+        mAllPackagesAdapter.setEntries(entries);
     }
 
     private void rebuild() {
         mSession.rebuild(mActivityFilter, ApplicationsState.ALPHA_COMPARATOR);
+    }
+
+    private void updateEnabledState() {
+        if (getView() != null) {
+            TextView summary = getView().findViewById(R.id.thermal_enabled_summary);
+            summary.setText(mProfilesEnabled ? R.string.thermal_enable_summary
+                    : R.string.thermal_disabled_summary);
+        }
+        if (mSearchView != null) {
+            mSearchView.setEnabled(mProfilesEnabled);
+            mClearSearch.setEnabled(mProfilesEnabled);
+        }
+        if (mAppsRecyclerView != null) {
+            mAppsRecyclerView.setAlpha(mProfilesEnabled ? 1f : 0.5f);
+        }
+        mAllPackagesAdapter.notifyDataSetChanged();
     }
 
     private int getStateDrawable(int state) {
@@ -230,22 +262,19 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView title;
-        private Spinner mode;
-        private ImageView icon;
-        private View rootView;
-        private ImageView stateIcon;
-        private ImageView touchIcon;
+        private final TextView title;
+        private final Spinner mode;
+        private final ImageView icon;
+        private final ImageView stateIcon;
+        private final ImageButton touchIcon;
 
         private ViewHolder(View view) {
             super(view);
-            this.title = view.findViewById(R.id.app_name);
-            this.mode = view.findViewById(R.id.app_mode);
-            this.icon = view.findViewById(R.id.app_icon);
-            this.stateIcon = view.findViewById(R.id.state);
-            this.touchIcon = view.findViewById(R.id.touch);
-            this.rootView = view;
-
+            title = view.findViewById(R.id.app_name);
+            mode = view.findViewById(R.id.app_mode);
+            icon = view.findViewById(R.id.app_icon);
+            stateIcon = view.findViewById(R.id.state);
+            touchIcon = view.findViewById(R.id.touch);
             view.setTag(this);
         }
     }
@@ -302,11 +331,13 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
     private class AllPackagesAdapter extends RecyclerView.Adapter<ViewHolder>
             implements AdapterView.OnItemSelectedListener, SectionIndexer {
 
-        private List<ApplicationsState.AppEntry> mEntries = new ArrayList<>();
-        private String[] mSections;
-        private int[] mPositions;
+        private final List<ApplicationsState.AppEntry> mAllEntries = new ArrayList<>();
+        private final List<ApplicationsState.AppEntry> mEntries = new ArrayList<>();
+        private String[] mSections = new String[0];
+        private int[] mPositions = new int[0];
+        private String mQuery = "";
 
-        public AllPackagesAdapter(Context context) {
+        private AllPackagesAdapter(Context context) {
             mActivityFilter = new ActivityFilter(context.getPackageManager());
         }
 
@@ -332,61 +363,102 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             ApplicationsState.AppEntry entry = mEntries.get(position);
 
             if (entry == null) {
                 return;
             }
 
-            holder.touchIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    TouchSettingsFragment touchSettingsFragment = new TouchSettingsFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("appName", entry.label);
-                    bundle.putString("packageName", entry.info.packageName);
-                    touchSettingsFragment.setArguments(bundle);
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, touchSettingsFragment, "touchSettingsFragment")
-                            .addToBackStack(null)
-                            .commit();
-                }
-            });
+            int packageState = mProfilesEnabled
+                    ? mThermalUtils.getStateForPackage(entry.info.packageName)
+                    : ThermalUtils.STATE_DEFAULT;
 
             holder.title.setText(entry.label);
             holder.title.setOnClickListener(v -> holder.mode.performClick());
             mApplicationsState.ensureIcon(entry);
             holder.icon.setImageDrawable(entry.icon);
-            int packageState = mThermalUtils.getStateForPackage(entry.info.packageName);
             holder.mode.setSelection(packageState, false);
+            holder.mode.setEnabled(mProfilesEnabled);
             holder.mode.setTag(entry);
-            int stateIconDawable = getStateDrawable(mThermalUtils.getStateForPackage(
-                    entry.info.packageName));
-            if (stateIconDawable == R.drawable.ic_thermal_gaming ||
-                    stateIconDawable == R.drawable.ic_thermal_benchmark) {
-                holder.touchIcon.setVisibility(View.VISIBLE);
-            } else {
-                holder.touchIcon.setVisibility(View.GONE);
-            }
-            holder.stateIcon.setImageResource(stateIconDawable);
+            holder.stateIcon.setImageResource(getStateDrawable(packageState));
+
+            boolean hasTouchControls = packageState == ThermalUtils.STATE_GAMING
+                    || packageState == ThermalUtils.STATE_BENCHMARK;
+            holder.touchIcon.setVisibility(hasTouchControls ? View.VISIBLE : View.GONE);
+            holder.touchIcon.setEnabled(mProfilesEnabled);
+            holder.touchIcon.setOnClickListener(v -> openTouchSettings(entry));
         }
 
-        private void setEntries(List<ApplicationsState.AppEntry> entries,
-                                List<String> sections, List<Integer> positions) {
-            mEntries = entries;
-            mSections = sections.toArray(new String[sections.size()]);
+        private void setEntries(List<ApplicationsState.AppEntry> entries) {
+            mAllEntries.clear();
+            mAllEntries.addAll(entries);
+            filter(mQuery);
+        }
+
+        private void filter(String query) {
+            mQuery = query == null ? "" : query.trim();
+            final String normalizedQuery = mQuery.toLowerCase(Locale.getDefault());
+            mEntries.clear();
+
+            for (ApplicationsState.AppEntry entry : mAllEntries) {
+                final CharSequence label = entry.label;
+                if (normalizedQuery.isEmpty() || (label != null
+                        && label.toString().toLowerCase(Locale.getDefault())
+                                .contains(normalizedQuery))) {
+                    mEntries.add(entry);
+                }
+            }
+
+            rebuildSections();
+            notifyDataSetChanged();
+        }
+
+        private void rebuildSections() {
+            final ArrayList<String> sections = new ArrayList<>();
+            final ArrayList<Integer> positions = new ArrayList<>();
+            final PackageManager pm = requireContext().getPackageManager();
+            String lastSectionIndex = null;
+            int offset = 0;
+
+            for (int i = 0; i < mEntries.size(); i++) {
+                final ApplicationInfo info = mEntries.get(i).info;
+                final String label = (String) info.loadLabel(pm);
+                final String sectionIndex;
+
+                if (!info.enabled) {
+                    sectionIndex = "--";
+                } else if (TextUtils.isEmpty(label)) {
+                    sectionIndex = "";
+                } else {
+                    sectionIndex = label.substring(0, 1).toUpperCase(Locale.getDefault());
+                }
+
+                if (lastSectionIndex == null
+                        || !TextUtils.equals(sectionIndex, lastSectionIndex)) {
+                    sections.add(sectionIndex);
+                    positions.add(offset);
+                    lastSectionIndex = sectionIndex;
+                }
+
+                offset++;
+            }
+
+            mSections = sections.toArray(new String[0]);
             mPositions = new int[positions.size()];
             for (int i = 0; i < positions.size(); i++) {
                 mPositions[i] = positions.get(i);
             }
-            notifyDataSetChanged();
         }
-
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            final ApplicationsState.AppEntry entry = (ApplicationsState.AppEntry) parent.getTag();
+            final ApplicationsState.AppEntry entry =
+                    (ApplicationsState.AppEntry) parent.getTag();
+            if (entry == null || !mProfilesEnabled) {
+                return;
+            }
+
             int currentState = mThermalUtils.getStateForPackage(entry.info.packageName);
             if (currentState != position) {
                 mThermalUtils.writePackage(entry.info.packageName, position);
@@ -414,15 +486,6 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
             }
 
             final int index = Arrays.binarySearch(mPositions, position);
-
-            /*
-             * Consider this example: section positions are 0, 3, 5; the supplied
-             * position is 4. The section corresponding to position 4 starts at
-             * position 3, so the expected return value is 1. Binary search will not
-             * find 4 in the array and thus will return -insertPosition-1, i.e. -3.
-             * To get from that number to the expected value of 1 we need to negate
-             * and subtract 2.
-             */
             return index >= 0 ? index : -index - 2;
         }
 
@@ -430,6 +493,18 @@ public class ThermalSettingsFragment extends SettingsBasePreferenceFragment
         public Object[] getSections() {
             return mSections;
         }
+    }
+
+    private void openTouchSettings(ApplicationsState.AppEntry entry) {
+        TouchSettingsFragment fragment = new TouchSettingsFragment();
+        Bundle arguments = new Bundle();
+        arguments.putString("appName", String.valueOf(entry.label));
+        arguments.putString("packageName", entry.info.packageName);
+        fragment.setArguments(arguments);
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private class ActivityFilter implements ApplicationsState.AppFilter {

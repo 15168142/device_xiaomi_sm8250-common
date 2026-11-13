@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">請選擇預設等化器</string>
     <string name="dirac_hifi_title">使用Hi-Fi高傳真播放</string>
     <string name="dirac_hifi_summary">減少噪音和失真並提高音源品質。</string>
-    <string name="dirac_hifi_enable_title">啟用Hi-fi</string>
     <string name="dirac_headset_default">預設</string>
     <string name="dirac_headset_earbuds">Xiaomi 耳塞式</string>
     <string name="dirac_headset_in_ear_2013">Xiaomi 入耳式</string>

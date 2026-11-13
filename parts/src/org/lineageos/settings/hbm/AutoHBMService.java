@@ -54,6 +54,8 @@ public class AutoHBMService extends Service {
     }
 
     private void enableHBM(boolean enable) {
+        if (!HBMModeSwitch.isSupported()) return;
+
         if (enable) {
             int current = Settings.System.getInt(getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, 255);

@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">Επιλογή προεπιλογής</string>
     <string name="dirac_hifi_title">Hi-Fi ήχος</string>
     <string name="dirac_hifi_summary">Μείωση θορύβου και αλλοίωσης και αύξηση ποιότητας ήχου</string>
-    <string name="dirac_hifi_enable_title">Ενεργοποίηση Hi-fi</string>
     <string name="dirac_headset_default">Προεπιλογή</string>
     <string name="dirac_headset_earbuds">Mi Earbuds</string>
     <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>

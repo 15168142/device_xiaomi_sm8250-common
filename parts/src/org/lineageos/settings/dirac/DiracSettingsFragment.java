@@ -66,21 +66,28 @@ public class DiracSettingsFragment extends SettingsBasePreferenceFragment implem
         }
 
         mHeadsetType = (ListPreference) findPreference(PREF_HEADSET);
-        mHeadsetType.setOnPreferenceChangeListener(this);
+        if (mHeadsetType != null) {
+            mHeadsetType.setOnPreferenceChangeListener(this);
+            mHeadsetType.setEnabled(enhancerEnabled);
+        }
 
         mPreset = (ListPreference) findPreference(PREF_PRESET);
-        mPreset.setOnPreferenceChangeListener(this);
+        if (mPreset != null) {
+            mPreset.setOnPreferenceChangeListener(this);
+            mPreset.setEnabled(enhancerEnabled);
+        }
 
         mHifi = (SwitchPreferenceCompat) findPreference(PREF_HIFI);
-        mHifi.setOnPreferenceChangeListener(this);
+        if (mHifi != null) {
+            mHifi.setOnPreferenceChangeListener(this);
+            mHifi.setEnabled(enhancerEnabled);
+        }
 
         mScenes = (ListPreference) findPreference(PREF_SCENE);
-        mScenes.setOnPreferenceChangeListener(this);
-
-        mHeadsetType.setEnabled(enhancerEnabled);
-        mPreset.setEnabled(enhancerEnabled);
-        mHifi.setEnabled(enhancerEnabled);
-        mScenes.setEnabled(enhancerEnabled);
+        if (mScenes != null) {
+            mScenes.setOnPreferenceChangeListener(this);
+            mScenes.setEnabled(enhancerEnabled);
+        }
     }
 
     @Override
@@ -90,10 +97,10 @@ public class DiracSettingsFragment extends SettingsBasePreferenceFragment implem
 
             boolean isChecked = (Boolean) newValue;
             mDiracUtils.setEnabled(isChecked);
-            mHifi.setEnabled(isChecked);
-            mHeadsetType.setEnabled(isChecked);
-            mPreset.setEnabled(isChecked);
-            mScenes.setEnabled(isChecked);
+            if (mHifi != null) mHifi.setEnabled(isChecked);
+            if (mHeadsetType != null) mHeadsetType.setEnabled(isChecked);
+            if (mPreset != null) mPreset.setEnabled(isChecked);
+            if (mScenes != null) mScenes.setEnabled(isChecked);
             return true;
         }
 

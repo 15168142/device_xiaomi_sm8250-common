@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">เลือกรายการที่ตั้งไว้</string>
     <string name="dirac_hifi_title">เสียงไฮไฟ</string>
     <string name="dirac_hifi_summary">ตัดเสียงรบกวนลดเสียงเพี้ยนและเพิ่มคุณภาพเสียง</string>
-    <string name="dirac_hifi_enable_title">เปิดใช้งาน Hi-fi</string>
     <string name="dirac_headset_default">ค่าเริ่มต้น</string>
     <string name="dirac_headset_earbuds">Mi Earbuds</string>
     <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>

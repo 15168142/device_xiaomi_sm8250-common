@@ -51,31 +51,47 @@ public class HBMModeSwitch implements OnPreferenceChangeListener {
         return null;
     }
 
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Boolean enabled = (Boolean) newValue;
-        boolean dcDimmingEnabled = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(DcDimmingTileService.DC_DIMMING_ENABLE_KEY, false);
-    	if (dcDimmingEnabled) {
-            return false;
-        }
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    /**
+     * hbm needs both the display parameter node and the backlight node to work
+     */
+    public static boolean isSupported() {
+        return getHBM() != null && getBACKLIGHT() != null;
+    }
+
+    /**
+     * turns hbm on or off, shared by the settings switch and the quick settings tile
+     *
+     * @return false if the node is missing, dc dimming is on or the write failed
+     */
+    public static boolean setEnabled(Context context, boolean enabled) {
+        if (!isSupported()) return false;
+        if (DcDimmingUtils.isEnabled(context)) return false;
+
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (enabled) {
-            int current = Settings.System.getInt(mContext.getContentResolver(),
+            if (!FileUtils.writeLine(getHBM(), "0x10000")) return false;
+            final int current = Settings.System.getInt(context.getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, 255);
             prefs.edit().putInt(SAVED_BRIGHTNESS, current).apply();
             FileUtils.writeLine(getBACKLIGHT(), "2047");
-            Settings.System.putInt(mContext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 255);
+            Settings.System.putInt(context.getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS, 255);
+            return true;
         }
-        FileUtils.writeLine(getHBM(), enabled ? "0x10000" : "0xF0000");
-        if (!enabled) {
-            int saved = prefs.getInt(SAVED_BRIGHTNESS, -1);
-            if (saved >= 0) {
-                Settings.System.putInt(mContext.getContentResolver(),
-                        Settings.System.SCREEN_BRIGHTNESS, saved);
-                FileUtils.writeLine(getBACKLIGHT(), String.valueOf(saved * 2047 / 255));
-                prefs.edit().remove(SAVED_BRIGHTNESS).apply();
-            }
+
+        if (!FileUtils.writeLine(getHBM(), "0xF0000")) return false;
+        final int saved = prefs.getInt(SAVED_BRIGHTNESS, -1);
+        if (saved >= 0) {
+            Settings.System.putInt(context.getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS, saved);
+            FileUtils.writeLine(getBACKLIGHT(), String.valueOf(saved * 2047 / 255));
+            prefs.edit().remove(SAVED_BRIGHTNESS).apply();
         }
         return true;
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        return setEnabled(mContext, (Boolean) newValue);
     }
 }

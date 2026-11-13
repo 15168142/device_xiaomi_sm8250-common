@@ -35,6 +35,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/device_settings_app_name"
         android:persistent="true"
+        android:supportsRtl="true"
         android:theme="@style/Theme.SubSettingsBase"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true">
@@ -52,7 +53,7 @@
             android:name=".dirac.DiracActivity"
             android:exported="false"
             android:label="@string/dirac_title"
-            android:theme="@style/Theme.SubSettingsBase">
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -119,7 +120,7 @@
             android:name=".thermal.ThermalActivity"
             android:exported="false"
             android:label="@string/thermal_title"
-            android:theme="@style/Theme.SubSettingsBase_v31">
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -156,7 +157,7 @@
             android:name=".refreshrate.RefreshActivity"
             android:label="@string/refresh_title"
             android:exported="false"
-            android:theme="@style/Theme.SubSettingsBase_v31">
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -178,7 +179,7 @@
         <activity
             android:name=".touchsampling.TouchSamplingSettingsActivity"
             android:label="@string/htsr_enable_title"
-            android:theme="@style/Theme.SubSettingsBase"
+            android:theme="@style/Theme.SubSettingsBase.Expressive"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
@@ -200,7 +201,7 @@
             android:name=".display.DcDimmingSettingsActivity"
             android:label="@string/dc_dimming_enable_title"
             android:exported="true"
-            android:theme="@style/Theme.SubSettingsBase">
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -218,7 +219,7 @@
             android:name=".hbm.HBMActivity"
             android:label="@string/hbm_fragment_title"
             android:exported="false"
-            android:theme="@style/Theme.SubSettingsBase">
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -229,9 +230,6 @@
                 android:name="com.android.settings.summary"
                 android:resource="@string/hbm_fragment_summary" />
         </activity>
-
-        <activity 
-            android:name=".hbm.HBMFragment" />
 
         <service
             android:name=".hbm.AutoHBMService"
@@ -253,7 +251,7 @@
             android:name=".charge.ChargeActivity"
             android:label="@string/charge_bypass_title"
             android:exported="true"
-            android:theme="@style/Theme.SubSettingsBase">
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -292,7 +290,8 @@
         <activity
             android:name=".saturation.SaturationActivity"
             android:label="@string/saturation_title"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -307,7 +306,8 @@
         <activity
             android:name=".speaker.ClearSpeakerActivity"
             android:exported="false"
-            android:label="@string/clear_speaker_title">
+            android:label="@string/clear_speaker_title"
+            android:theme="@style/Theme.SubSettingsBase.Expressive">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>

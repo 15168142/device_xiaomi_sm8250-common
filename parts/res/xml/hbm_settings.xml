@@ -16,34 +16,46 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:settings="http://schemas.android.com/apk/res/org.lineageos.settings.HBMFragment"
-	android.title="@string/hbm_fragment_title">
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:title="@string/hbm_fragment_title">
 
-    <PreferenceCategory>
-        <SwitchPreference
-            android:key="hbm"
-            android:title="@string/hbm_mode_title"
-            android:summary="@string/hbm_mode_summary"
-            android:defaultValue="false" />
+    <SwitchPreferenceCompat
+        android:key="hbm"
+        android:title="@string/hbm_mode_title"
+        android:summary="@string/hbm_mode_summary"
+        android:defaultValue="false" />
 
-        <SwitchPreference
-            android:key="auto_hbm"
-            android:title="@string/auto_hbm_title"
-            android:summary="@string/auto_hbm_summary" />
+    <SwitchPreferenceCompat
+        android:key="auto_hbm"
+        android:title="@string/auto_hbm_title"
+        android:summary="@string/auto_hbm_summary" />
 
-        <org.lineageos.settings.hbm.AutoHBMThresholdPreference
-            android:key="auto_hbm_threshold"
-            android:title="@string/auto_hbm_threshold_title"
-            android:summary="@string/auto_hbm_threshold_summary" />
+    <org.lineageos.settings.CustomSeekBarPreference
+        android:key="auto_hbm_threshold"
+        android:persistent="false"
+        android:title="@string/auto_hbm_threshold_title"
+        android:summary="@string/auto_hbm_threshold_summary"
+        android:max="60000"
+        android:defaultValue="7000"
+        settings:iconStart="@drawable/ic_custom_seekbar_minus"
+        settings:iconEnd="@drawable/ic_custom_seekbar_plus"
+        settings:iconStartContentDescription="@string/custom_seekbar_decrease"
+        settings:iconEndContentDescription="@string/custom_seekbar_increase" />
 
-        <org.lineageos.settings.hbm.AutoHBMTimePreference
-            android:key="hbm_disable_time"
-            android:title="@string/hbm_disable_time_title"
-            android:summary="@string/hbm_disable_time_summary" />
+    <org.lineageos.settings.CustomSeekBarPreference
+        android:key="hbm_disable_time"
+        android:persistent="false"
+        android:title="@string/hbm_disable_time_title"
+        android:summary="@string/hbm_disable_time_summary"
+        android:max="10"
+        android:defaultValue="1"
+        settings:iconStart="@drawable/ic_custom_seekbar_minus"
+        settings:iconEnd="@drawable/ic_custom_seekbar_plus"
+        settings:iconStartContentDescription="@string/custom_seekbar_decrease"
+        settings:iconEndContentDescription="@string/custom_seekbar_increase" />
 
-        <Preference
-            android:icon="@drawable/ic_info_outline"
-            android:summary="@string/hbm_mode_warning" 
-            android:persistent="false" />
-    </PreferenceCategory>
+    <com.android.settingslib.widget.FooterPreference
+        android:key="hbm_footer"
+        android:icon="@drawable/ic_info_outline"
+        android:title="@string/hbm_mode_warning" />
 </PreferenceScreen>

@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">Framkamera kan inte användas under kalibrering</string>
     <string name="dirac_hifi_title">Hi-Fi ljud</string>
     <string name="dirac_hifi_summary">Reducera brus och störningar och öka ljudkvaliteten</string>
-    <string name="dirac_hifi_enable_title">Aktivera Hi-fi</string>
     <string name="dirac_headset_default">Standardinställning</string>
     <string name="dirac_headset_earbuds">Mi Hörlurar</string>
     <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>

@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">プリセットを選択してください</string>
     <string name="dirac_hifi_title">Hi-Fi オーディオ</string>
     <string name="dirac_hifi_summary">ノイズやひずみを低減し、オーディオ品質を向上させる</string>
-    <string name="dirac_hifi_enable_title">Hi-Fi の有効化</string>
     <string name="dirac_headset_default">デフォルト</string>
     <string name="dirac_headset_earbuds">Mi イヤーバッド</string>
     <string name="dirac_headset_in_ear_2013">Mi インイヤー (2013)</string>

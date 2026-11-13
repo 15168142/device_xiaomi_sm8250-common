@@ -16,30 +16,26 @@
 
 package org.lineageos.settings.display;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
-import androidx.preference.SwitchPreference;
-import android.provider.Settings;
+import androidx.preference.SwitchPreferenceCompat;
+
+import com.android.settingslib.widget.SettingsBasePreferenceFragment;
 
 import org.lineageos.settings.R;
 import org.lineageos.settings.utils.FileUtils;
 
 import java.io.File;
 
-public class DcDimmingSettingsFragment extends PreferenceFragment implements
+public class DcDimmingSettingsFragment extends SettingsBasePreferenceFragment implements
         OnPreferenceChangeListener {
 
-    private SwitchPreference mDcDimmingPreference;
+    private SwitchPreferenceCompat mDcDimmingPreference;
     private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
     private static final String DC_DIMMING_NODE = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_exposure";
     private static final String HBM = "/sys/class/drm/card0/card0-DSI-1/disp_param";

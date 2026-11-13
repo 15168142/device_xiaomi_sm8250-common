@@ -27,9 +27,12 @@
     <org.lineageos.settings.CustomSeekBarPreference
         android:key="saturation"
         android:max="200"
-        android:min="0"
         android:defaultValue="100"
-        settings:continuousUpdates="true" />
+        settings:continuousUpdates="true"
+        settings:iconStart="@drawable/ic_custom_seekbar_minus"
+        settings:iconEnd="@drawable/ic_custom_seekbar_plus"
+        settings:iconStartContentDescription="@string/custom_seekbar_decrease"
+        settings:iconEndContentDescription="@string/custom_seekbar_increase" />
 
     <com.android.settingslib.widget.FooterPreference
         android:key="saturation_footer"  

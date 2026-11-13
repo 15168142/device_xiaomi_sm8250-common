@@ -25,7 +25,6 @@
     <string name="dirac_preset_title">Ընտրել նախնական կարգավորում</string>
     <string name="dirac_hifi_title">Hi-Fi ձայն</string>
     <string name="dirac_hifi_summary">Նվազեցնել աղմուկը և աղավաղումը, բարձրացնել աուդիո որակը</string>
-    <string name="dirac_hifi_enable_title">Միացնել Hi-fi</string>
     <string name="dirac_headset_default">Կանխադրված</string>
     <string name="dirac_headset_earbuds">Mi Earbuds</string>
     <string name="dirac_headset_in_ear_2013">Mi ներդրվող (2013)</string>

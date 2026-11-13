@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">ნამზადის არჩევა</string>
     <string name="dirac_hifi_title">Hi-Fi აუდიო</string>
     <string name="dirac_hifi_summary">ხმაურის მინიმალიზება აუდიო ხარისხის გაზრდა</string>
-    <string name="dirac_hifi_enable_title">Hi-fi ს გააქტიურება</string>
     <string name="dirac_headset_default">ნაგულისხმევი</string>
     <string name="dirac_headset_earbuds">Mi ყურსასმენი</string>
     <string name="dirac_headset_in_ear_2013">Mi ყურსასმენი (2013)</string>

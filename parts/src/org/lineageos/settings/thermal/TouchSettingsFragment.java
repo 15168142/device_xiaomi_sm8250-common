@@ -26,17 +26,17 @@ import androidx.preference.PreferenceManager;
 import com.android.settingslib.widget.MainSwitchPreference;
 import com.android.settingslib.widget.SettingsBasePreferenceFragment;
 
+import org.lineageos.settings.CustomSeekBarPreference;
 import org.lineageos.settings.R;
-import org.lineageos.settings.widget.SeekBarPreference;
 
 public class TouchSettingsFragment extends SettingsBasePreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener,
         Preference.OnPreferenceChangeListener {
 
     private SharedPreferences mSharedPrefs;
-    private SeekBarPreference mTouchSensitivity;
-    private SeekBarPreference mTouchResponse;
-    private SeekBarPreference mTouchResistant;
+    private CustomSeekBarPreference mTouchSensitivity;
+    private CustomSeekBarPreference mTouchResponse;
+    private CustomSeekBarPreference mTouchResistant;
     private MainSwitchPreference mGameMode;
 
     private String packageName = "";
@@ -60,9 +60,11 @@ public class TouchSettingsFragment extends SettingsBasePreferenceFragment
             mGameMode.setOnPreferenceChangeListener(this);
         }
 
-        mTouchResistant = (SeekBarPreference) findPreference(Constants.PREF_TOUCH_RESISTANT);
-        mTouchResponse = (SeekBarPreference) findPreference(Constants.PREF_TOUCH_RESPONSE);
-        mTouchSensitivity = (SeekBarPreference) findPreference(Constants.PREF_TOUCH_SENSITIVITY);
+        mTouchResistant = (CustomSeekBarPreference) findPreference(Constants.PREF_TOUCH_RESISTANT);
+        mTouchResponse = (CustomSeekBarPreference) findPreference(Constants.PREF_TOUCH_RESPONSE);
+        mTouchSensitivity = (CustomSeekBarPreference) findPreference(Constants.PREF_TOUCH_SENSITIVITY);
+        if (mGameMode == null || mTouchResistant == null || mTouchResponse == null
+                || mTouchSensitivity == null) return;
         updateDefaults();
     }
 
@@ -105,9 +107,9 @@ public class TouchSettingsFragment extends SettingsBasePreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (Constants.PREF_TOUCH_GAME_MODE.equals(preference.getKey())) {
             boolean isChecked = (Boolean) newValue;
-            mTouchSensitivity.setEnabled(isChecked);
-            mTouchResponse.setEnabled(isChecked);
-            mTouchResistant.setEnabled(isChecked);
+            if (mTouchSensitivity != null) mTouchSensitivity.setEnabled(isChecked);
+            if (mTouchResponse != null) mTouchResponse.setEnabled(isChecked);
+            if (mTouchResistant != null) mTouchResistant.setEnabled(isChecked);
         }
         return true;
     }
@@ -121,9 +123,9 @@ public class TouchSettingsFragment extends SettingsBasePreferenceFragment
         mTouchResponse.setEnabled(modeEnabled);
         mTouchResistant.setEnabled(modeEnabled);
 
-        mTouchResponse.setProgress(Integer.parseInt(values[Constants.TOUCH_RESPONSE]));
-        mTouchSensitivity.setProgress(Integer.parseInt(values[Constants.TOUCH_SENSITIVITY]));
-        mTouchResistant.setProgress(Integer.parseInt(values[Constants.TOUCH_RESISTANT]));
+        mTouchResponse.setValue(Integer.parseInt(values[Constants.TOUCH_RESPONSE]));
+        mTouchSensitivity.setValue(Integer.parseInt(values[Constants.TOUCH_SENSITIVITY]));
+        mTouchResistant.setValue(Integer.parseInt(values[Constants.TOUCH_RESISTANT]));
     }
 
     private void writeTouchValues(String modes) {

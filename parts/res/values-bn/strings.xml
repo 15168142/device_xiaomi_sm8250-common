@@ -25,7 +25,6 @@
     <string name="dirac_preset_title">একটি প্রিসেট বাছুন</string>
     <string name="dirac_hifi_title">Hi-Fi অডিও</string>
     <string name="dirac_hifi_summary">শব্দ ও বিকৃতি কমিয়ে অডিও গুণমান বাড়ান</string>
-    <string name="dirac_hifi_enable_title">হাই-ফাই চালু করুন</string>
     <string name="dirac_headset_default">ডিফল্ট</string>
     <string name="dirac_headset_earbuds">Mi ইয়ারবাড</string>
     <string name="dirac_headset_in_ear_2013">Mi  ইন- ইয়ার(2013)</string>

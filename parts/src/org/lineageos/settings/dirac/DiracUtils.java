@@ -17,7 +17,6 @@
 package org.lineageos.settings.dirac;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.os.SystemClock;
@@ -127,11 +126,6 @@ public class DiracUtils {
 
     public void setHeadsetType(int paramInt) {
         mDiracSound.setHeadsetType(paramInt);
-    }
-
-    public boolean getHifiMode() {
-        AudioManager audioManager = mContext.getSystemService(AudioManager.class);
-        return audioManager.getParameters("hifi_mode").contains("true");
     }
 
     public void setHifiMode(int paramInt) {

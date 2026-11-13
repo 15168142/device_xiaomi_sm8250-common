@@ -14,11 +14,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingBottom="4dp"
+    android:paddingBottom="12dp"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-    android:paddingTop="4dp">
+    android:paddingTop="12dp">
 
     <ImageView
         android:id="@+id/app_icon"
@@ -43,32 +44,28 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textAlignment="viewStart"
-            android:textColor="?android:attr/textColorPrimary"
-            style="?android:attr/textAppearanceMedium" />
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textColor="?android:attr/textColorPrimary" />
 
         <Spinner
             android:id="@+id/app_mode"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="48dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="1dp" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/touch"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:visibility="invisible"
-            android:src="@drawable/ic_touch" />
-
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/touch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/touch_control_title"
+        android:padding="12dp"
+        android:src="@drawable/ic_touch"
+        android:tint="@color/settingslib_materialColorOnSurfaceVariant"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/state"
@@ -77,4 +74,5 @@
         android:padding="8dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_thermal_default" />
+
 </LinearLayout>

@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">Vorgabe auswählen</string>
     <string name="dirac_hifi_title">Hi-Fi audio</string>
     <string name="dirac_hifi_summary">Reduziert Rauschen und Verzerrung, um die Audio Qualität zu erhöhen</string>
-    <string name="dirac_hifi_enable_title">Hi-Fi Audio aktivieren</string>
     <string name="dirac_headset_default">Standardeinstellung</string>
     <string name="dirac_headset_earbuds">Mi true wireless Kopfhörer</string>
     <string name="dirac_headset_in_ear_2013">Mi In Ear (2013)</string>

@@ -22,8 +22,6 @@
     <string name="tile_added">Ô đã được thêm</string>
     <string name="tile_not_added">Ô chưa được thêm</string>
     <string name="tile_already_added">Ô đã thêm trước đó</string>
-    <string name="tile_on">Bật</string>
-    <string name="tile_off">Tắt</string>
 
     <!-- HBM settings -->
     <string name="hbm_fragment_title">Chế độ độ sáng cao</string>
@@ -44,7 +42,6 @@
     <string name="thermal_enable_title">Sử dụng hồ sơ tối ưu hóa</string>
     <string name="thermal_enable_summary">Cấu hình hồ sơ tối ưu hóa cho từng ứng dụng</string>
     <string name="thermal_disabled_summary">Tất cả ứng dụng đều dùng hồ sơ mặc định. Hồ sơ đã lưu sẽ được khôi phục khi bật</string>
-    <string name="thermal_profile_dialog_title">Hồ sơ tối ưu hóa cho %1$s</string>
     <string name="thermal_default">Không tối ưu hóa</string>
     <string name="thermal_benchmark">Hiệu suất</string>
     <string name="thermal_browser">Trình duyệt</string>
@@ -69,7 +66,6 @@
     <!-- Per-app refresh rate -->
     <string name="refresh_title">Tốc độ làm mới cho mỗi ứng dụng</string>
     <string name="refresh_summary">Đặt tốc độ làm mới cụ thể cho từng ứng dụng</string>
-    <string name="refresh_rate_dialog_title">Tốc độ làm mới cho %1$s</string>
     <string name="refresh_default">Mặc định</string>
     <string name="refresh_standard">60Hz</string>
     <string name="refresh_extreme">120Hz</string>
@@ -91,7 +87,6 @@
     <!-- Dirac settings: Hi-Fi -->
     <string name="dirac_hifi_title">Âm thanh Hi-Fi</string>
     <string name="dirac_hifi_summary">Giảm tiếng ồn và biến dạng để tăng chất lượng âm thanh</string>
-    <string name="dirac_hifi_enable_title">Bật Hi-Fi</string>
 
     <!-- Dirac settings: Headset types -->
     <string name="dirac_headset_earbuds">Mi Earbuds</string>
@@ -147,7 +142,6 @@
     <string name="music_headset_scenario_vocal">Giọng nói</string>
 
     <!-- High Touch Polling -->
-    <string name="htsr_title">Độ nhạy cảm ứng</string>
     <string name="htsr_enable_title">Tăng độ nhạy cảm ứng</string>
     <string name="htsr_enable_summary">Tăng tần suất quét cảm ứng để giảm độ trễ</string>
     <string name="htsr_enable_summary_not_supported">Kernel hiện không hỗ trợ tính năng tăng độ nhạy</string>
@@ -160,8 +154,8 @@
     <!-- Custom seekbar -->
     <string name="custom_seekbar_value">Giá trị: <xliff:g id="v">%s</xliff:g></string>
     <string name="custom_seekbar_default_value">mặc định</string>
-    <string name="custom_seekbar_default_value_to_set">Giá trị mặc định: <xliff:g id="v">%s</xliff:g>\nNhấn giữ để đặt lại</string>
-    <string name="custom_seekbar_default_value_is_set">Giá trị mặc định đã được đặt</string>
+    <string name="custom_seekbar_decrease">Giảm</string>
+    <string name="custom_seekbar_increase">Tăng</string>
 
     <!-- Image preview -->
     <string name="image_preview_content_description">Xem trước</string>
@@ -179,9 +173,12 @@
     <string name="charge_bypass_warning">Cảnh báo: Sạc trực tiếp có thể làm tăng nhiệt độ thiết bị hoặc gây hỏng pin, nên sử dụng cẩn thận</string>
     <string name="charge_bypass_unavailable">Kernel hiện không hỗ trợ tính năng sạc trực tiếp</string>
     <string name="charge_bypass_safety_failed">Không thể bật sạc trực tiếp: %s</string>
+    <string name="charge_bypass_ac_not_connected">Chưa kết nối bộ sạc</string>
+    <string name="charge_bypass_temp_too_high">Nhiệt độ pin quá cao (<xliff:g id="temp">%.1f</xliff:g>°C)</string>
+    <string name="charge_bypass_level_too_low">Mức pin quá thấp (<xliff:g id="level">%d</xliff:g>%%)</string>
+    <string name="charge_bypass_checks_passed">Tất cả các kiểm tra an toàn đã đạt</string>
 
     <!-- Shared app-list controls -->
-    <string name="apps_title">Ứng dụng</string>
     <string name="search_apps_hint">Tìm kiếm ứng dụng</string>
     <string name="clear_search">Xóa tìm kiếm</string>
 </resources>

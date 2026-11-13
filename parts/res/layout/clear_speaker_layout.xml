@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="24dp"
+            android:text="@string/clear_speaker_summary"
+            android:textAppearance="@style/TextAppearance.SettingsLib.TitleMedium"
+            android:textColor="@color/settingslib_materialColorOnSurfaceVariant" />
+
+        <ImageView
+            android:id="@+id/clear_speaker_action"
+            android:layout_width="136dp"
+            android:layout_height="136dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:clickable="true"
+            android:contentDescription="@string/clear_speaker_start"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/clear_speaker_circle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settingslib_round_background"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="22dp"
+            android:text="@string/clear_speaker_description"
+            android:textAppearance="@style/TextAppearance.SettingsLib.BodyLarge"
+            android:textColor="@color/settingslib_materialColorOnSurfaceVariant" />
+    </LinearLayout>
+</ScrollView>

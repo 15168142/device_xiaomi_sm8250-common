@@ -18,31 +18,38 @@
 package org.lineageos.settings.touchsampling;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
-import android.os.UserHandle;
-import android.provider.Settings;
-import android.util.Log;
 import androidx.preference.PreferenceManager;
 
 import org.lineageos.settings.utils.FileUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 public final class TouchSamplingUtils {
 
     private static final String TAG = "TouchSamplingUtils";
     public static final String HTSR_FILE = "/sys/devices/virtual/touch/touch_dev/bump_sample_rate";
+    public static final String PREF_HTSR_ENABLE = "htsr_enable";
+    private static final String HTSR_PREFS = "SHAREDHTSR";
+
+    public static boolean isSupported() {
+        return FileUtils.fileExists(HTSR_FILE);
+    }
+
+    public static boolean isEnabled(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREF_HTSR_ENABLE, false);
+    }
+
+    public static void setEnabled(Context context, boolean enabled) {
+        FileUtils.writeLine(HTSR_FILE, enabled ? "1" : "0");
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putBoolean(PREF_HTSR_ENABLE, enabled).apply();
+        context.getSharedPreferences(HTSR_PREFS, Context.MODE_PRIVATE).edit()
+                .putInt(HTSR_PREFS, enabled ? 1 : 0).apply();
+    }
 
     public static void restoreSamplingValue(Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(TouchSamplingSettingsFragment.SHAREDHTSR, Context.MODE_PRIVATE);
-        Integer htsrstate = sharedPref.getInt(TouchSamplingSettingsFragment.SHAREDHTSR, 0);
-        FileUtils.writeLine(HTSR_FILE, htsrstate.toString());
+        SharedPreferences sharedPref = context.getSharedPreferences(HTSR_PREFS,
+                Context.MODE_PRIVATE);
+        FileUtils.writeLine(HTSR_FILE, String.valueOf(sharedPref.getInt(HTSR_PREFS, 0)));
     }
 }

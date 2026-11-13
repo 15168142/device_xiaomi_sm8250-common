@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">Valitse esiasetus</string>
     <string name="dirac_hifi_title">Hi-Fi ääni</string>
     <string name="dirac_hifi_summary">Vähennä melua ja häiriöitä ja paranna äänenlaatua</string>
-    <string name="dirac_hifi_enable_title">Hi-fi päälle</string>
     <string name="dirac_headset_default">Oletus</string>
     <string name="dirac_headset_earbuds">Mi Earbuds</string>
     <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>

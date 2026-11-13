@@ -14,6 +14,5 @@
 <resources>
     <!-- Touch profiles -->
     <integer name="smoothness_default">0</integer>
-    <integer name="smoothness_min">0</integer>
     <integer name="smoothness_max">3</integer>
 </resources>

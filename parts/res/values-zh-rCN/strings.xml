@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">请选择预设效果</string>
     <string name="dirac_hifi_title">使用 Hi-Fi 高保真播放</string>
     <string name="dirac_hifi_summary">高度还原音源信息，原汁原味</string>
-    <string name="dirac_hifi_enable_title">启用 HI-FI</string>
     <string name="dirac_headset_default">默认​​​​​</string>
     <string name="dirac_headset_earbuds">小米耳塞式</string>
     <string name="dirac_headset_in_ear_2013">小米圈铁 (2013)</string>

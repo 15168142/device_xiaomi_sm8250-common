@@ -26,7 +26,6 @@
     <string name="dirac_preset_title">Kies voorinstellingen</string>
     <string name="dirac_hifi_title">Hi-Fi audio</string>
     <string name="dirac_hifi_summary">Verminder ruis en vervorming en verhoog audiokwaliteit</string>
-    <string name="dirac_hifi_enable_title">Hi-Fi inschakelen</string>
     <string name="dirac_headset_default">Standaard</string>
     <string name="dirac_headset_earbuds">Mi oordoppen</string>
     <string name="dirac_headset_in_ear_2013">Mi In-ear (2013)</string>
