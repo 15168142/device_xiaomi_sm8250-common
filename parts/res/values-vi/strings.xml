@@ -183,4 +183,19 @@
     <!-- Shared app-list controls -->
     <string name="search_apps_hint">Tìm kiếm ứng dụng</string>
     <string name="clear_search">Xóa tìm kiếm</string>
+
+    <!-- AI Master Picture Engine -->
+    <string name="screen_enhance_engine_title">Bộ xử lý hình ảnh AI</string>
+    <string name="screen_enhance_engine_summary">Nâng cao chất lượng video và làm mượt chuyển động</string>
+    <string name="screen_enhance_engine_features_category">Các tính năng xử lý</string>
+    <string name="screen_enhance_engine_omx_hint">Lưu ý: Tính năng này sử dụng bộ xử lý VPP phần cứng và chỉ hoạt động khi trình phát video dùng bộ giải mã OMX</string>
+    <string name="screen_enhance_engine_s2h_title">Nâng cao chất lượng hình ảnh</string>
+    <string name="screen_enhance_engine_s2h_summary">Tự động nâng cấp video từ SDR lên HDR, giúp hình ảnh rực rỡ và sống động hơn</string>
+    <string name="screen_enhance_engine_memc_title">Làm mượt chuyển động (MEMC)</string>
+    <string name="screen_enhance_engine_memc_summary">Ước tính và bù trừ chuyển động theo thời gian thực (MEMC), giúp các video khung hình thấp trở nên mượt mà hơn. Tính năng này sẽ tốn pin hơn</string>
+    <string name="vpp_apps_category_title">Cài đặt ứng dụng</string>
+    <string name="vpp_select_apps_title">Quản lý ứng dụng video</string>
+    <string name="vpp_select_apps_summary_none">Chưa chọn ứng dụng nào</string>
+    <string name="vpp_select_apps_summary_count">Đã chọn %d ứng dụng</string>
+    <string name="vpp_select_apps_dialog_title">Chọn ứng dụng video</string>
 </resources>
